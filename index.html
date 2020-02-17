@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <h1>HR Expense Tracker</h1>
+
+        <div class="expense-wrapper">
+            <header class="header">
+                <div class="total-section">
+                    <label class="grand-total">Total <span>000</span></label>
+                    <div class="inc-exp">
+                        <label id="totalInc">Income <span>00</span></label>
+                        <label id="totalExp">Expenses <span>00</span></label>
+                    </div>
+                </div>
+            </header>
+            <section class="expense-inputs">
+                <select id="expenses">
+                    <option value="income" selected>Incomes</option>
+                    <option value="expense">Expenses</option>
+                </select>
+
+                <input type="text" id="name" placeholder="Enter title">
+                <input type="number" id="amount" placeholder="Amount">
+                
+                
+               <button id="addExpenseBtn">add</button>
+                <br>
+          
+            </section>
+            <section class="income-and-expense-list-wrapper">
+                <div class="income-list">
+                    <h2>Income</h2>
+                    <ul></ul>
+                </div>
+                <div class="expense-list">
+                    <h2>Expense</h2>
+                    <ul></ul>
+                </div>
+                
+            </section>
+            <footer>
+                <p>Expense @ 2020</p>
+            </footer>
+        </div>
+    </div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
