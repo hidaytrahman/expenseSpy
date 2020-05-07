@@ -2,6 +2,10 @@
 It will track expense and income
 
 
+## Contribution
+Feel free to contribute :)
+
+
 ## TODO
  - [ ] Store data
  - [ ] Delete specific item from inc or exp
