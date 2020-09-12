@@ -6,19 +6,6 @@ body {
     margin: 0;
 }
 
-input[type='text'],
-input[type='number'] {
-    border: 0;
-    padding: 6px;
-    font-size: 14px;
-    background: transparent;
-    border-bottom: 1px solid #c4c4c4;
-    outline: none;
-    width: 96%;
-    margin: 15px 0;
-}
-
-
 button,
 select {
     padding: 5px 15px;
@@ -32,7 +19,6 @@ ul {
 }
 
 .main-wrapper {
-    background: #c5c5c5;
     padding: 6px;
 }
 
@@ -50,15 +36,12 @@ footer {
 .expense-inputs {
     background: #ffffff;
     padding: 15px;
-    border: 2px solid #03A9F4;
 }
 
 .expense-wrapper {
     max-width: 1024px;
     margin: 1rem auto;
-    border: 1px solid #c3c3c3;
     padding: 1rem;
-    background: linear-gradient(-39deg, #00BCD4 45%, #f8f8f8 64%);
     border-radius: 9px;
 }
 
@@ -117,13 +100,14 @@ footer {
 
 .income-and-expense-list-wrapper ul li {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .income-and-expense-list-wrapper ul li span {
     width: 50%;
 }
 .income-and-expense-list-wrapper ul li button {
-    background: red;
     cursor: pointer;
     margin-left: 14px;
 }
