@@ -3,7 +3,7 @@ Track expense and income.
 
 
 ## Demo
-[Have a look](hidaytrahman.github.io/expensespy/)
+[Have a look](https://hidaytrahman.github.io/expenseSpy/)
 
 
 ## Contribution
