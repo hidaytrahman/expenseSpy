@@ -1,5 +1,9 @@
 # expenseSpy
-Track expense and income
+Track expense and income.
+
+
+## Demo
+[Have a look](hidaytrahman.github.io/expensespy/)
 
 
 ## Contribution
