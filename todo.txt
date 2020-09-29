@@ -1,0 +1,5 @@
+## TODO
+ - [ ] Delete specific item from inc or exp
+ - [ ] Save Monthly Wise data
+ - [ ] Login and sync with API
+ - [ ] Create PWA
