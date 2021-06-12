@@ -1,0 +1,58 @@
+.editFormWrapper {
+    width: 100%;
+    position: absolute;
+    padding: 0.4rem;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+
+.editFormWrapper form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editFormWrapper form .custom-input {
+    width: 100%;
+    margin-right: 7%;
+    padding: 0 2%;
+    border: 0;
+}
+
+
+.listing-wrapper {
+    max-height: 63vh;
+    overflow: auto;
+    padding-bottom: 1rem !important;
+}
+
+.todo-list-wrapper {
+    max-height: 63vh;
+    overflow: auto;
+    padding-bottom: 1rem !important;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.todo-list-wrapper li .MuiListItem-root {
+    background: #a3b6c0;
+    border-bottom: 1px solid #4c6d7d29 !important;
+}
+
+.smile {
+    font-size: 3rem;
+}
+
+.todo-completed {
+    background: rgb(199 201 201) !important;
+    color: #939595 !important;
+}
+
+.custom-progressbar {
+    position: absolute;
+    top: 0;
+    z-index: 9;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
