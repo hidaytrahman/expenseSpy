@@ -1,8 +1,9 @@
-import { Button, FilledInput, FormControl, FormControlLabel, FormLabel, InputAdornment, InputLabel, Radio, RadioGroup, Select, TextField } from "@material-ui/core";
+import { Box, Button, Chip, CircularProgress, FilledInput, FormControl, FormControlLabel, FormLabel, InputAdornment, InputLabel, Radio, RadioGroup, Select, TextField, Typography } from "@material-ui/core";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 
 const AddItem = (props) => {
+    const { trackerList, todosCompleted, progress } = props;
     const refTodo = useRef(null);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -47,7 +48,7 @@ const AddItem = (props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
-                <div className="col-sm-8 mb-2">
+                <div className="col-sm-6 mb-2">
                     <FormControl className="mb-2" fullWidth>
                         <InputLabel htmlFor="age-native-simple">Select Month</InputLabel>
                         <Select
@@ -166,12 +167,64 @@ const AddItem = (props) => {
                     >Add</Button>
                 </div>
 
-                <div className="col-sm-4 mb-2">
+                <div className="col-sm-6 mb-2">
                     <h2>Show</h2>
+                    {
+                        trackerList && trackerList.length > 0 &&
+                        <div className="col-lg-12">
+                            <section className="todo-board">
+                                <h3 className="d-flex"> 📝 <div style={{ marginRight: "5px" }}>Tracker Board</div>  <CircularProgressWithLabel color="secondary" value={progress} /></h3>
+
+                                <hr />
+                                <small>
+                                    ( <span>List</span> <span> {todosCompleted.length} / {trackerList.length}</span> )
+                            </small>
+                                <hr />
+
+                                <div className="row">
+
+                                    <div className="col-6">
+                                        <strong>All : </strong> <Chip color="primary" label={trackerList.length} />
+                                    </div>
+
+                                    <div className="col-6">
+                                        <strong>Done : </strong> <Chip color="secondary" label={todosCompleted.length} />
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div>
+                                    <p>We don't store data on server. 🙂</p>
+                                </div>
+                            </section>
+                        </div>
+                    }
                 </div>
             </div>
         </form>
     )
 }
 
+function CircularProgressWithLabel(props) {
+    return (
+        <Box position="relative" display="inline-flex">
+            <CircularProgress variant="determinate" {...props} />
+            <Box
+                top={0}
+                left={0}
+                bottom={0}
+                right={0}
+                position="absolute"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+            >
+                <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
+                    props.value,
+                )}%`}</Typography>
+            </Box>
+        </Box>
+    );
+}
 export default AddItem;

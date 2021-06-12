@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import AddItem from './AddItem';
 import TodoList from './TodoList';
-import "./Todo.css";
+import "./Tracker.css";
 import "../../theme.css";
 import useProgress from 'hooks/useProgress';
 
@@ -17,27 +17,7 @@ function LinearProgressWithLabel(props) {
     );
 }
 
-function CircularProgressWithLabel(props) {
-    return (
-        <Box position="relative" display="inline-flex">
-            <CircularProgress variant="determinate" {...props} />
-            <Box
-                top={0}
-                left={0}
-                bottom={0}
-                right={0}
-                position="absolute"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-            >
-                <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
-                    props.value,
-                )}%`}</Typography>
-            </Box>
-        </Box>
-    );
-}
+
 
 const Tracker = () => {
 
@@ -108,7 +88,9 @@ const Tracker = () => {
 
             <AddItem
                 addItem={addItem}
-
+                trackerList={trackerList}
+                todosCompleted={todosCompleted}
+                progress={progress}
             />
 
             <div className="row">
@@ -128,37 +110,7 @@ const Tracker = () => {
 
                 </div>
 
-                {
-                    trackerList && trackerList.length > 0 &&
-                    <div className="col-lg-4">
-                        <section className="todo-board">
-                            <h3 className="d-flex"> 📝 <div style={{ marginRight: "5px" }}>Tracker Board</div>  <CircularProgressWithLabel color="secondary" value={progress} /></h3>
-
-                            <hr />
-                            <small>
-                                ( <span>List</span> <span> {todosCompleted.length} / {trackerList.length}</span> )
-                            </small>
-                            <hr />
-
-                            <div className="row">
-
-                                <div className="col-6">
-                                    <strong>All : </strong> <Chip color="primary" label={trackerList.length} />
-                                </div>
-
-                                <div className="col-6">
-                                    <strong>Done : </strong> <Chip color="secondary" label={todosCompleted.length} />
-                                </div>
-                            </div>
-
-                            <hr />
-
-                            <div>
-                                <p>We don't store data on server. 🙂</p>
-                            </div>
-                        </section>
-                    </div>
-                }
+               
 
 
 
