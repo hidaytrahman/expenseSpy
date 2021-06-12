@@ -1,8 +1,8 @@
-import { Box, Chip, CircularProgress, Typography } from '@material-ui/core';
-import { useEffect, useState } from 'react';
+import { Box } from '@material-ui/core';
+import { useState } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import AddItem from './AddItem';
-import TodoList from './TodoList';
+import TrackerList from './TrackerList';
 import "./Tracker.css";
 import "../../theme.css";
 import useProgress from 'hooks/useProgress';
@@ -22,9 +22,9 @@ function LinearProgressWithLabel(props) {
 const Tracker = () => {
 
     // get data from browser if already exists and set to initial state
-    const todosOnStorage = localStorage.getItem("expenseTracker") ? JSON.parse(localStorage.getItem("expenseTracker")) : [];
+    const trackerListOnStorage = localStorage.getItem("expenseTracker") ? JSON.parse(localStorage.getItem("expenseTracker")) : [];
 
-    const [trackerList, setTrackerList] = useState([...todosOnStorage]);
+    const [trackerList, setTrackerList] = useState([...trackerListOnStorage]);
 
     // get completed todos
     const todosCompleted = (trackerList && trackerList.length > 0) ? trackerList.filter((todo) => todo.completed === true) : []
@@ -49,32 +49,18 @@ const Tracker = () => {
         }
 
         console.log(' dataset ', dataset);
-
         setTrackerList([...trackerList, dataset]);
-
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
     }
 
-    const deleteTodoItem = (index) => {
+    const deleteItem = (index) => {
         trackerList.splice(index, 1);
         setTrackerList([...trackerList]);
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
     }
 
-    const editTodoItem = (index, title) => {
+    const editTrackerItem = (index, title) => {
         trackerList.splice(index, 1, { title: title, completed: false });
-        setTrackerList([...trackerList]);
-        localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
-    }
-
-    const markTodoAsCompleted = (index, title) => {
-        // basic modification
-        trackerList.splice(index, 1, {
-            completed: true,
-            title
-        });
-
-        // and setting to the main states with spread
         setTrackerList([...trackerList]);
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
     }
@@ -98,22 +84,16 @@ const Tracker = () => {
 
                     {
                         trackerList && trackerList.length > 0 ?
-                            <TodoList
+                            <TrackerList
                                 trackerList={trackerList}
-                                deleteTodoItem={deleteTodoItem}
-                                markTodoAsCompleted={markTodoAsCompleted}
-                                editTodoItem={editTodoItem}
+                                deleteItem={deleteItem}
+                                editTrackerItem={editTrackerItem}
                             />
 
                             : <div className="alert alert-info">What are you thinking, Add your first expense? 😉</div>
                     }
 
                 </div>
-
-               
-
-
-
             </div>
 
         </section>

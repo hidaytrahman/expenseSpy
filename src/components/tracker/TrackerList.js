@@ -1,8 +1,8 @@
 import { Button, IconButton, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, Radio } from "@material-ui/core";
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import { useRef, useState } from "react";
-const TodoList = (props) => {
-    const { trackerList, deleteTodoItem, markTodoAsCompleted, editTodoItem } = props;
+const TrackerList = (props) => {
+    const { trackerList, deleteItem, editTrackerItem } = props;
     const [editFormStatus, setEditFormStatus] = useState(false);
     const [selectedListIndex, setSelectedListIndex] = useState(0);
     const editTodoInput = useRef(null);
@@ -10,7 +10,7 @@ const TodoList = (props) => {
     const editFormSubmit = (e) => {
         e.preventDefault();
 
-        editTodoItem(selectedListIndex, editTodoInput.current.value);
+        editTrackerItem(selectedListIndex, editTodoInput.current.value);
         setSelectedListIndex(0);
         setEditFormStatus(false);
     }
@@ -51,21 +51,10 @@ const TodoList = (props) => {
                                     createEditFrom()
                                 }
 
-                                <ListItemIcon>
-                                    <Radio
-                                        color="primary"
-                                        checked={todo.completed}
-                                        disabled={todo.completed}
-                                        onChange={() => markTodoAsCompleted(index, todo.title)}
-                                        value={true}
-                                        variant="secondary"
-                                        name="radio-button-demo"
-                                        inputProps={{ 'aria-label': 'A' }}
-                                    />
-                                </ListItemIcon>
+
                                 <ListItemText style={{ textDecoration: todo.completed && "line-through" }}>{todo.title}</ListItemText>
                                 <ListItemSecondaryAction>
-                                    <IconButton edge="end" aria-label="comments" onClick={() => deleteTodoItem(index)}>
+                                    <IconButton edge="end" aria-label="comments" onClick={() => deleteItem(index)}>
                                         <DeleteSharpIcon />
                                     </IconButton>
                                 </ListItemSecondaryAction>
@@ -82,4 +71,4 @@ const TodoList = (props) => {
     )
 }
 
-export default TodoList;
+export default TrackerList;
