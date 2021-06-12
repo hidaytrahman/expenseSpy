@@ -1,0 +1,46 @@
+{
+    "data": [
+        {
+            "type": "expense",
+            "date": {
+                "month": "january",
+                "day": "28",
+                "year": "2021"
+            },
+            "title": "Flat Rent",
+            "amount": 18000,
+            "info": "",
+            "categories": "personal",
+            "created" : "DAte string"
+
+        },
+        {
+            "type": "expense",
+            "date": {
+                "month": "january",
+                "day": "28",
+                "year": "2021"
+            },
+            "title": "Flat Rent",
+            "amount": 18000,
+            "info": "",
+            "categories": "personal",
+            "created" : "DAte string"
+
+        },
+        {
+            "type": "income",
+            "date": {
+                "month": "january",
+                "day": "28",
+                "year": "2021"
+            },
+            "title": "Salary",
+            "amount": 82000,
+            "info": "My salary",
+            "categories": "personal",
+            "created" : "DAte string"
+
+        }
+    ]
+}

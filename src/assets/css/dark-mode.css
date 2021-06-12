@@ -1,0 +1,60 @@
+body {
+    --text-color: #222;
+    --bkg-color: #fff;
+}
+
+body.dark-theme {
+    --text-color: #eee;
+    --bkg-color: #464646;
+}
+
+
+body {
+    background: var(--bkg-color);
+}
+
+header {
+    background: var(--bkg-color) !important;
+}
+
+
+.todo-board {
+    background: var(--bkg-color) !important;
+}
+
+h1,
+label,
+p {
+    color: var(--text-color) !important;
+}
+
+.MuiFilledInput-root,
+.MuiInputLabel-root,
+.MuiFormLabel-root {
+    border: var(--text-color) !important
+}
+
+.dark-theme .todo-list-wrapper li .MuiListItem-root {
+    background: #767676;
+    color: #d5d5d5;
+}
+
+.dark-theme .todo-completed {
+    background: rgb(94 94 94) !important;
+    color: #464646 !important;
+}
+
+.dark-theme .todo-board {
+    background-color: #535353 !important;
+    border: 2px solid #464646;
+}
+
+.dark-theme .todo-board small,
+.dark-theme .todo-board div {
+    color: #898b8b;
+}
+
+
+.dark-theme input[type=text] {
+    color: #8b8b8b;
+}
