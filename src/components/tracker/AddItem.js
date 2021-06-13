@@ -48,14 +48,11 @@ const AddItem = (props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
-                <div className="col-sm-6 mb-2">
+                <div className="custom-panel col-sm-6 mb-2">
                     <FormControl className="mb-2" fullWidth>
                         <InputLabel htmlFor="age-native-simple">Select Month</InputLabel>
                         <Select
-
                             native
-                            //value={state.age}
-                            //onChange={handleChange}
                             {...register("trackerMonth", {
                                 required: {
                                     value: true,
@@ -168,33 +165,29 @@ const AddItem = (props) => {
                 </div>
 
                 <div className="col-sm-6 mb-2">
-                    <h2>Show</h2>
                     {
                         trackerList && trackerList.length > 0 &&
                         <div className="col-lg-12">
                             <section className="todo-board">
                                 <h3 className="d-flex"> 📝 <div style={{ marginRight: "5px" }}>Tracker Board</div>  <CircularProgressWithLabel color="secondary" value={progress} /></h3>
 
-                                <hr />
-                                <small>
-                                    ( <span>List</span> <span> {todosCompleted.length} / {trackerList.length}</span> )
-                            </small>
-                                <hr />
+                    
 
                                 <div className="row">
 
                                     <div className="col-6">
-                                        <strong>Income : </strong> <Chip color="primary" label={trackerList.length} />
+                                        <strong>Income : </strong> <span >{trackerList.length} </span>
                                     </div>
 
                                     <div className="col-6">
-                                        <strong>Expense : </strong> <Chip color="secondary" label={todosCompleted.length} />
+                                        <strong>Expense : </strong> <span >{todosCompleted.length}</span>
                                     </div>
                                 </div>
 
                                 <hr />
 
                                 <div>
+                                    <p>NO REGISTRATION REQUIRED</p>
                                     <p>We don't store data on server. 🙂</p>
                                 </div>
                             </section>

@@ -1,5 +1,20 @@
+// base
 @import "./_variables";
-
 @import "./reset";
 
+// core
+@import "./core/controls";
+@import "./core/header";
+@import "./core/footer";
+@import "./core/typography";
+@import "./core/browser";
+@import "./core/core";
+
+// views
+@import "./views/addItem";
+@import "./views/landing";
+@import "./views/list";
+@import "./views/board";
+
+// extra utils
 @import "./darkMode";

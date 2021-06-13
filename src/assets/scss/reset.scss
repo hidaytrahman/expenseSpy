@@ -1,12 +1,12 @@
 
 .App {
     .MuiButton-containedPrimary {
-    background-color: #69696b !important;
-}
+        background-color: $primary-color !important;
+    }
 
-.MuiButton-containedPrimary:hover {
-    background-color: #353535 !important;
-}
+    .MuiButton-containedPrimary:hover {
+        background-color: #353535 !important;
+    }
 
 
     .MuiList-padding {
@@ -16,11 +16,41 @@
     .MuiCard-root {
         background: #f6f6f6;
     }
+
+    .MuiFilledInput-root {
+        background: $gray-color
+    }
+
     .MuiSelect-select.MuiSelect-select {
         padding: 10px;
         text-transform: capitalize;
         option {
-            background: $primary-color;
+            background: $light-bg-color;
         }
+    }
+
+    .MuiChip-colorPrimary {
+        background: $primary-color;
+    }
+
+    .MuiChip-colorSecondary {
+        background: $secondary-color;
+    }
+
+    .MuiRadio-colorPrimary.Mui-checked {
+        color: $primary-color;
+    }
+
+    .MuiRadio-colorSecondary.Mui-checked {
+        color: $secondary-color;
+    }
+
+    .MuiFilledInput-underline:before,
+    .MuiInput-underline:before {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .MuiFormGroup-root {
+            flex-direction: row;
     }
 }

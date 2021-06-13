@@ -35,9 +35,9 @@ const Header = () => {
                 <div className="row">
                     <div className="col-sm-10">
                         <h1>🖊️Expense Spy </h1>
-                        <h3>Know your expense 😎</h3>
+                       
                     </div>
-                    <div className="col-sm-2">
+                    <div className="col-sm-2 d-none">
                         <FormGroup className="d-flex align-items-end">
                             <FormControlLabel
                                 control={<Switch checked={darkMode}

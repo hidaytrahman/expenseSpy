@@ -7,7 +7,11 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-
+      <section className="section-highlight-area">
+        <div className="container">
+         <h3>Know your expense 😎</h3>
+        </div>
+      </section>
       <Tracker></Tracker>
 
       <Footer></Footer>

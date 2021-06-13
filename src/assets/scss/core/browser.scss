@@ -1,0 +1,15 @@
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: $light-bg-color;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #69696b;
+}
+
+::selection {
+     background-color: $light-bg-color;
+}

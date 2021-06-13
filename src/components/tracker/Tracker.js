@@ -66,8 +66,10 @@ const Tracker = () => {
 
 
     return (
-        <section className="container todo-wrapper">
-            <div className="custom-progressbar">
+        <section className=" tracker-wrapper">
+
+        <div className="container"> 
+   <div className="custom-progressbar">
                 <LinearProgressWithLabel value={progress} color="secondary" />
             </div>
 
@@ -95,6 +97,8 @@ const Tracker = () => {
                 </div>
             </div>
 
+        </div>
+         
         </section>
     )
 }
