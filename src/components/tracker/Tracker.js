@@ -3,8 +3,7 @@ import { useState } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import AddItem from './AddItem';
 import TrackerList from './TrackerList';
-import "./Tracker.css";
-import "../../theme.css";
+import "./Tracker.scss";
 import useProgress from 'hooks/useProgress';
 
 function LinearProgressWithLabel(props) {

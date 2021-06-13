@@ -26,7 +26,7 @@
     padding-bottom: 1rem !important;
 }
 
-.todo-list-wrapper {
+.list-wrapper {
     max-height: 63vh;
     overflow: auto;
     padding-bottom: 1rem !important;
@@ -34,7 +34,7 @@
     flex-direction: column-reverse;
 }
 
-.todo-list-wrapper li .MuiListItem-root {
+.list-wrapper li .MuiListItem-root {
     background: #a3b6c0;
     border-bottom: 1px solid #4c6d7d29 !important;
 }
@@ -43,10 +43,6 @@
     font-size: 3rem;
 }
 
-.todo-completed {
-    background: rgb(199 201 201) !important;
-    color: #939595 !important;
-}
 
 .custom-progressbar {
     position: absolute;
@@ -55,4 +51,20 @@
     width: 100%;
     left: 0;
     right: 0;
+}
+
+
+.item-listing-container {
+    
+}
+
+
+.item-listing-container .MuiCardHeader-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-header .amount{
+    font-size: 1.9rem;
 }

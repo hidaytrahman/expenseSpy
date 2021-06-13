@@ -1,70 +1,63 @@
-import { Button, IconButton, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, Radio } from "@material-ui/core";
+import { Card, CardContent, CardHeader, Chip, Collapse, IconButton, List, Typography } from "@material-ui/core";
+import { ExpandMore } from "@material-ui/icons";
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
-import { useRef, useState } from "react";
 const TrackerList = (props) => {
-    const { trackerList, deleteItem, editTrackerItem } = props;
-    const [editFormStatus, setEditFormStatus] = useState(false);
-    const [selectedListIndex, setSelectedListIndex] = useState(0);
-    const editTodoInput = useRef(null);
-
-    const editFormSubmit = (e) => {
-        e.preventDefault();
-
-        editTrackerItem(selectedListIndex, editTodoInput.current.value);
-        setSelectedListIndex(0);
-        setEditFormStatus(false);
-    }
-
-
-    // create dynamic form for edit todo item
-    const createEditFrom = () => {
-        return (
-            <div className="editFormWrapper">
-                <form onSubmit={(e) => editFormSubmit(e)}>
-                    <input type="text" defaultValue={trackerList[selectedListIndex].title} className="custom-input" ref={editTodoInput} />
-                    <Button type="submit" variant="contained" color="primary"
-                    >Update</Button>
-                </form>
-            </div >
-        )
-    }
+    const { trackerList, deleteItem } = props;
 
     return (
         <div>
-            <List className="todo-list-wrapper">
-
+            <h2>Expense List</h2>
+            <List className="list-wrapper">
                 {
                     trackerList &&
-                    trackerList.map((todo, index) => {
+                    trackerList.map((expense, index) => {
                         return (
-                            <ListItem role={undefined} dense button key={index}
-                                onDoubleClick={() => {
-                                    setEditFormStatus(true);
-                                    setSelectedListIndex(index)
-                                }}
+                            <Card className="">
+                                <CardContent>
+                                    <div className="list-header row">
+                                        <div className="col-6 amount">
+                                            {`₹ ${expense.amount}`}
+                                        </div>
 
-                                className={todo.completed && "todo-completed"}
-                            >
+                                        <div className="col-6">
+                                            <div className="amount-title d-flex align-items-center justify-content-evenly">
+                                                <span className="mr-2">{expense.title}</span>
 
-                                {
-                                    editFormStatus && index === selectedListIndex &&
-                                    createEditFrom()
-                                }
+                                                <Chip color="secondary" label={expense.categories} size="small" />
+
+                                                <IconButton edge="end" aria-label="comments" onClick={() => deleteItem(index)}>
+                                                    <DeleteSharpIcon />
+                                                </IconButton>
+                                            </div>
 
 
-                                <ListItemText style={{ textDecoration: todo.completed && "line-through" }}>{todo.title}</ListItemText>
-                                <ListItemSecondaryAction>
-                                    <IconButton edge="end" aria-label="comments" onClick={() => deleteItem(index)}>
-                                        <DeleteSharpIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="list-content">
+                                        {/* <IconButton aria-label="settings">
+                                            <ExpandMore />
+                                        </IconButton> */}
+                                        
+                                    </div>
+
+                                </CardContent>
+
+                                <Collapse
+                                    //in={expanded}
+                                    timeout="auto" unmountOnExit
+                                >
+                                    <CardContent>
+                                        {expense.info}
+                                    </CardContent>
+                                </Collapse>
+                            </Card>
+
                         )
                     })
                 }
             </List>
-
-            <small>Double click to edit</small>
         </div>
 
 

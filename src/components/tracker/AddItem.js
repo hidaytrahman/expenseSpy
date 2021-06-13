@@ -184,11 +184,11 @@ const AddItem = (props) => {
                                 <div className="row">
 
                                     <div className="col-6">
-                                        <strong>All : </strong> <Chip color="primary" label={trackerList.length} />
+                                        <strong>Income : </strong> <Chip color="primary" label={trackerList.length} />
                                     </div>
 
                                     <div className="col-6">
-                                        <strong>Done : </strong> <Chip color="secondary" label={todosCompleted.length} />
+                                        <strong>Expense : </strong> <Chip color="secondary" label={todosCompleted.length} />
                                     </div>
                                 </div>
 
