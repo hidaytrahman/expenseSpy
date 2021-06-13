@@ -14,7 +14,13 @@
     }
 
     .MuiCard-root {
-        background: $theme-color-light;
+        background: $theme-color-more-lightest;
+        box-shadow: none;
+        border-bottom: 1px solid #0000000f;
+
+        &:last-child {
+            padding-bottom: 5px;
+        }
     }
 
     .MuiFilledInput-root {

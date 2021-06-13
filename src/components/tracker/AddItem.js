@@ -74,6 +74,7 @@ const AddItem = (props) => {
                     <FormControl component="fieldset" className="mb-2">
                         <FormLabel component="legend">Type</FormLabel>
                         <RadioGroup aria-label="type" name="type"
+                            defaultValue="income"
                             {...register("trackerType", {
                                 required: {
                                     value: true,
@@ -134,6 +135,7 @@ const AddItem = (props) => {
                     <FormControl fullWidth className="mb-2" variant="filled">
                         <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
                         <FilledInput
+                            type="number"
                             id="filled-adornment-amount"
                             //value={values.amount}
                             // onChange={handleChange('amount')}
@@ -171,7 +173,7 @@ const AddItem = (props) => {
                             <section className="todo-board">
                                 <h3 className="d-flex"> 📝 <div style={{ marginRight: "5px" }}>Tracker Board</div>  <CircularProgressWithLabel color="secondary" value={progress} /></h3>
 
-                    
+
 
                                 <div className="row">
 
