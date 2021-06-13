@@ -168,7 +168,7 @@ const AddItem = (props) => {
 
                 <div className="col-sm-6 mb-2">
                     {
-                        trackerList && trackerList.length > 0 &&
+                        trackerList && trackerList.length > 0 && false &&
                         <div className="col-lg-12">
                             <section className="todo-board">
                                 <h3 className="d-flex"> 📝 <div style={{ marginRight: "5px" }}>Tracker Board</div>  <CircularProgressWithLabel color="secondary" value={progress} /></h3>
