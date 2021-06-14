@@ -34,6 +34,8 @@ const TrackerList = (props) => {
     }
   }
 
+  
+
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = useRef(open);
   useEffect(() => {
@@ -102,13 +104,6 @@ const TrackerList = (props) => {
 
 
                     </div>
-
-                  </div>
-
-                  <div className="list-content">
-                    {/* <IconButton aria-label="settings">
-                                            <ExpandMore />
-                                        </IconButton> */}
 
                   </div>
 

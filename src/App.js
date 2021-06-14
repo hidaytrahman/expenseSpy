@@ -9,7 +9,7 @@ function App() {
       <Header></Header>
       <section className="section-highlight-area">
         <div className="container">
-         <h3>Know your expense 😎</h3>
+         <h3>Track your expenses! 💸</h3>
         </div>
       </section>
       <Tracker></Tracker>

@@ -1,9 +1,10 @@
-import { Box, Button, Chip, CircularProgress, FilledInput, FormControl, FormControlLabel, FormLabel, InputAdornment, InputLabel, Radio, RadioGroup, Select, TextField, Typography } from "@material-ui/core";
+import { Box, Button, Chip, CircularProgress, FilledInput, FormControl, FormControlLabel, FormHelperText, FormLabel, InputAdornment, InputLabel, Radio, RadioGroup, Select, TextField, Typography } from "@material-ui/core";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { monthList } from "../../core/date";
 
 const AddItem = (props) => {
-    const { trackerList, todosCompleted, progress } = props;
+    const { trackerList, progress } = props;
     const refTodo = useRef(null);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,22 +15,6 @@ const AddItem = (props) => {
         refTodo.current.value = "";
         refTodo.current.focus();
     }
-
-
-    const monthList = [
-        "january",
-        "february",
-        "march",
-        "april",
-        "may",
-        "june",
-        "july",
-        "august",
-        "september",
-        "october",
-        "november",
-        "december"
-    ]
 
 
     const categoryList = [
@@ -78,15 +63,15 @@ const AddItem = (props) => {
                             {...register("trackerType", {
                                 required: {
                                     value: true,
-                                    message: "Please select type"
+                                    message: "Please select expense type"
                                 }
                             })}
-                        >
+                        > 
                             <FormControlLabel value="income" control={<Radio />} label="Income" />
                             <FormControlLabel value="expense" control={<Radio />} label="Expense" />
                         </RadioGroup>
-                        {errors.trackerType?.type === 'required' &&
-                            <span className="alert alert-warning">"Please choose type 😟" </span>}
+                        <FormHelperText>{errors.trackerType?.message}</FormHelperText>
+                        
                     </FormControl>
 
                     <FormControl className="mb-2" fullWidth>
@@ -168,7 +153,7 @@ const AddItem = (props) => {
 
                 <div className="col-sm-6 mb-2">
                     {
-                        trackerList && trackerList.length > 0 && false &&
+                        trackerList && trackerList.length > 0 &&
                         <div className="col-lg-12">
                             <section className="todo-board">
                                 <h3 className="d-flex"> 📝 <div style={{ marginRight: "5px" }}>Tracker Board</div>  <CircularProgressWithLabel color="secondary" value={progress} /></h3>
@@ -182,7 +167,7 @@ const AddItem = (props) => {
                                     </div>
 
                                     <div className="col-6">
-                                        <strong>Expense : </strong> <span >{todosCompleted.length}</span>
+                                        <strong>Expense : </strong> <span >{8000}</span>
                                     </div>
                                 </div>
 

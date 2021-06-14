@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import AddItem from './AddItem';
 import TrackerList from './TrackerList';
@@ -24,6 +24,9 @@ const Tracker = () => {
     const trackerListOnStorage = localStorage.getItem("expenseTracker") ? JSON.parse(localStorage.getItem("expenseTracker")) : [];
 
     const [trackerList, setTrackerList] = useState([...trackerListOnStorage]);
+    const [totalExpense, setTotalExpense] = useState(0);
+    const [expenseList, setExpenseList] = useState([]);
+    const [incomeList, setIncomeList] = useState([]);
 
     // get completed todos
     const todosCompleted = (trackerList && trackerList.length > 0) ? trackerList.filter((todo) => todo.completed === true) : []
@@ -64,41 +67,56 @@ const Tracker = () => {
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
     }
 
+    useEffect(() => {
+        // filter income and expense
+        const _incomeList = trackerList.filter((item) => item.type === 'income');
+        const _expenseList = trackerList.filter((item) => item.type === 'expense');
+
+        setIncomeList(_incomeList)
+        setExpenseList(_expenseList)
+
+        console.log(' incomeList ', incomeList);
+        console.log(' expenseList ', expenseList);
+
+        setTotalExpense(500)
+
+    }, [trackerList]);
+
 
     return (
-        <section className=" tracker-wrapper">
+        <section className="tracker-wrapper">
 
-        <div className="container"> 
-   <div className="custom-progressbar">
-                <LinearProgressWithLabel value={progress} color="secondary" />
-            </div>
-
-            <AddItem
-                addItem={addItem}
-                trackerList={trackerList}
-                todosCompleted={todosCompleted}
-                progress={progress}
-            />
-
-            <div className="row">
-                <div className="col-lg-8">
-
-                    {
-                        trackerList && trackerList.length > 0 ?
-                            <TrackerList
-                                trackerList={trackerList}
-                                deleteItem={deleteItem}
-                                editTrackerItem={editTrackerItem}
-                            />
-
-                            : <div className="alert alert-info">What are you thinking, Add your first expense? 😉</div>
-                    }
-
+            <div className="container">
+                <div className="custom-progressbar">
+                    <LinearProgressWithLabel value={progress} color="secondary" />
                 </div>
+
+                <AddItem
+                    addItem={addItem}
+                    trackerList={trackerList}
+                    todosCompleted={todosCompleted}
+                    progress={progress}
+                />
+
+                <div className="row">
+                    <div className="col-lg-8">
+
+                        {
+                            trackerList && trackerList.length > 0 ?
+                                <TrackerList
+                                    trackerList={trackerList}
+                                    deleteItem={deleteItem}
+                                    editTrackerItem={editTrackerItem}
+                                />
+
+                                : <div className="alert alert-info">What are you thinking, Add your first expense? 😉</div>
+                        }
+
+                    </div>
+                </div>
+
             </div>
 
-        </div>
-         
         </section>
     )
 }

@@ -34,7 +34,7 @@ const Header = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-10">
-                        <h1>🖊️Expense Spy </h1>
+                        <h1>💰 Expense Spy 🕵️  </h1>
                        
                     </div>
                     <div className="col-sm-2 d-none">
