@@ -1,11 +1,12 @@
 import { Box, Button, Chip, CircularProgress, FilledInput, FormControl, FormControlLabel, FormHelperText, FormLabel, InputAdornment, InputLabel, Radio, RadioGroup, Select, TextField, Typography } from "@material-ui/core";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { monthList } from "../../core/date";
 
 const AddItem = (props) => {
     const { trackerList, progress } = props;
     const refTodo = useRef(null);
+    const [totalExpense, setTotalExpense] = useState(null);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -27,7 +28,22 @@ const AddItem = (props) => {
         "savings",
         "cash",
         "other"
-    ]
+    ];
+
+    useEffect(() => {
+        const incomeAmountList = trackerList.filter((item) => item.type === 'income').map((item) => parseInt(item.amount));
+
+        const expenseAmountList = trackerList.filter((item) => item.type === 'expense').map((item) => parseInt(item.amount));
+        
+        const totalIncome = incomeAmountList.reduce((a, b) => a + b, 0);
+        const totalExpenses = expenseAmountList.reduce((a, b) => a + b, 0);
+
+        setTotalExpense({ income: totalIncome, expense: totalExpenses})
+        console.log(' amounts ', totalIncome);
+        console.log(' totalExpense ', totalExpense);
+
+
+    }, [trackerList])
 
 
     return (
@@ -163,11 +179,11 @@ const AddItem = (props) => {
                                 <div className="row">
 
                                     <div className="col-6">
-                                        <strong>Income : </strong> <span >{trackerList.length} </span>
+                                        <strong>Income : </strong> <span >{totalExpense && totalExpense.income} </span>
                                     </div>
 
                                     <div className="col-6">
-                                        <strong>Expense : </strong> <span >{8000}</span>
+                                        <strong>Expense : </strong> <span >{totalExpense && totalExpense.expense}</span>
                                     </div>
                                 </div>
 

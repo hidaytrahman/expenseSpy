@@ -1,62 +1,7 @@
-import { Button, Card, CardContent, CardHeader, Chip, Collapse, MenuList, ClickAwayListener, MenuItem, Paper, Grow, Popper, IconButton, List, Typography, DialogActions, Dialog, DialogTitle, DialogContent } from "@material-ui/core";
-import { Edit, MoreVert, RemoveRedEyeOutlined, RemoveRedEyeRounded } from "@material-ui/icons";
+import { Card, CardContent, Chip,  IconButton, List } from "@material-ui/core";
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
-import { useEffect, useRef, useState } from "react";
 const TrackerList = (props) => {
   const { trackerList, deleteItem } = props;
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-
-
-  };
-
-  const openMoreInfo = (data) => {
-    return (
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <DialogTitle id="customized-dialog-title"
-          onClose={handleClose}
-        >
-          {data.title}
-        </DialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-            auctor fringilla.
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus
-            onClick={handleClose}
-            color="primary">
-            Save changes
-          </Button>
-        </DialogActions>
-      </Dialog>
-    )
-  }
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const anchorRef = useRef(null);
-
-
 
   return (
     <div className="list-main-wrapper mt-4 mb-4">
@@ -79,10 +24,9 @@ const TrackerList = (props) => {
 
                         <Chip color="secondary" label={expense.categories} size="small" />
 
-                        <IconButton
-                          onClick={handleClickOpen}>
+                        {/* <IconButton>
                           <RemoveRedEyeRounded />
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton
                           onClick={() => deleteItem(index)}>
                           <DeleteSharpIcon />
