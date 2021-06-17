@@ -1,61 +1,65 @@
-.editFormWrapper {
-    width: 100%;
-    position: absolute;
-    padding: 0.4rem;
-    top: 0;
-    left: 0;
-    z-index: 9;
-}
+.App {
+    .editFormWrapper {
+        width: 100%;
+        position: absolute;
+        padding: 0.4rem;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
 
-.editFormWrapper form {
-    display: flex;
-    justify-content: space-between;
-}
+    .editFormWrapper form {
+        display: flex;
+        justify-content: space-between;
+    }
 
-.editFormWrapper form .custom-input {
-    width: 100%;
-    margin-right: 7%;
-    padding: 0 2%;
-    border: 0;
-}
-
-
-.listing-wrapper {
-    max-height: 63vh;
-    overflow: auto;
-    padding-bottom: 1rem !important;
-}
-
-.list-wrapper {
-    max-height: 63vh;
-    overflow: auto;
-    padding-bottom: 1rem !important;
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-.list-wrapper li .MuiListItem-root {
-    background: #a3b6c0;
-    border-bottom: 1px solid #4c6d7d29 !important;
-}
-
-.smile {
-    font-size: 3rem;
-}
+    .editFormWrapper form .custom-input {
+        width: 100%;
+        margin-right: 7%;
+        padding: 0 2%;
+        border: 0;
+    }
 
 
+    .listing-wrapper {
+        max-height: 63vh;
+        overflow: auto;
+        padding-bottom: 1rem !important;
+    }
 
-.item-listing-container {
-    
-}
+    .list-wrapper {
+        max-height: 63vh;
+        overflow: auto;
+        padding-bottom: 1rem !important;
+        display: flex;
+        flex-direction: column-reverse;
+
+        .income-list-item {
+            background: #dbf6ec;
+        }
+    }
+
+    .list-wrapper li .MuiListItem-root {
+        background: #a3b6c0;
+        border-bottom: 1px solid #4c6d7d29 !important;
+    }
+
+    .smile {
+        font-size: 3rem;
+    }
 
 
-.item-listing-container .MuiCardHeader-content{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.list-header .amount{
-    font-size: 1.3rem;
+    .item-listing-container {}
+
+
+    .item-listing-container .MuiCardHeader-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .list-header .amount {
+        font-size: 1.3rem;
+    }
 }
