@@ -1,29 +1,28 @@
-
 .todo-wrapper {
-    min-height: 77vh;
+  min-height: 77vh;
 }
 
 .todo-board {
-    background-color: #fafafa;
+  background-color: #fafafa;
+  padding: 1rem;
+
+  .income-expense-area {
+    font-size: 2rem;
+    background: #f6f6f6;
     padding: 1rem;
+    position: relative;
+    border-radius: 8px;
 
-    .income-expense-area {
-        font-size: 2rem;
-        background: $primary-color;
-        padding: 11px;
-        position: relative;
-
-        strong {
-            font-size: 1rem;
-            position: absolute;
-            top: 0;
-        }
-
-        .total-income-amount {
-            display: block;
-            margin-top: 0.5rem;
-            color: $light-color;
-
-        }
+    strong {
+      font-size: 1rem;
+      position: absolute;
+      top: 5px;
     }
+
+    .total-income-amount {
+      display: block;
+      margin-top: 0.5rem;
+      color: $primary-color;
+    }
+  }
 }

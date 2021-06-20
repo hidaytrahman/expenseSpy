@@ -1,12 +1,10 @@
 import {
   Box,
   Button,
-  Chip,
   CircularProgress,
   FilledInput,
   FormControl,
   FormControlLabel,
-  FormHelperText,
   FormLabel,
   InputAdornment,
   InputLabel,
@@ -16,27 +14,14 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { useEffect, useRef, useState } from "react";
-import { monthList, currentMonth } from "../../core/date";
 
-const trackerCategoryList = {
-  income: ["salary", "freelance", "gift", "cashback", "other"],
-  expense: [
-    "personal",
-    "entertainment",
-    "bills",
-    "utilities",
-    "EMI",
-    "savings",
-    "cash",
-    "other",
-  ],
-};
+import { useRef, useState } from "react";
+import { monthList, currentMonth } from "../../core/date";
+import { trackerCategoryList } from "core/constant";
 
 const AddItem = (props) => {
-  const { trackerList, progress } = props;
+  const { trackerList, progress, totalAmount } = props;
   const refTodo = useRef(null);
-  const [totalExpense, setTotalExpense] = useState(null);
 
   const [trackerMonth, setTrackerMonth] = useState(currentMonth);
   const [trackerType, setTrackerType] = useState("income");
@@ -74,23 +59,6 @@ const AddItem = (props) => {
       setMessage("Title and Amount are required!");
     }
   };
-
-  useEffect(() => {
-    const incomeAmountList = trackerList
-      .filter((item) => item.type === "income")
-      .map((item) => parseInt(item.amount));
-
-    const expenseAmountList = trackerList
-      .filter((item) => item.type === "expense")
-      .map((item) => parseInt(item.amount));
-
-    const totalIncome = incomeAmountList.reduce((a, b) => a + b, 0);
-    const totalExpenses = expenseAmountList.reduce((a, b) => a + b, 0);
-
-    setTotalExpense({ income: totalIncome, expense: totalExpenses });
-    console.log(" amounts ", totalIncome);
-    console.log(" totalExpense ", totalExpense);
-  }, [trackerList]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -205,9 +173,7 @@ const AddItem = (props) => {
               <section className="todo-board">
                 <h3 className="d-flex">
                   {" "}
-                  📝 <div style={{ marginRight: "5px" }}>
-                    Tracker Board
-                  </div>{" "}
+                  <div style={{ marginRight: "5px" }}>Tracker Board</div>{" "}
                   <CircularProgressWithLabel
                     color="secondary"
                     value={progress}
@@ -218,14 +184,18 @@ const AddItem = (props) => {
                   <div className="col-6">
                     <div className="income-expense-area">
                       <strong className="label">Income</strong>
-                      <span className="total-income-amount">{totalExpense && totalExpense.income} </span>
+                      <span className="total-income-amount">
+                        {totalAmount && totalAmount.income}{" "}
+                      </span>
                     </div>
                   </div>
 
                   <div className="col-6">
                     <div className="income-expense-area">
                       <strong className="label">Expense</strong>
-                      <span className="total-income-amount">{totalExpense && totalExpense.expense}</span>
+                      <span className="total-income-amount">
+                        {totalAmount && totalAmount.expense}
+                      </span>
                     </div>
                   </div>
                 </div>

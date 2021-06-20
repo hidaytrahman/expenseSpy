@@ -5,6 +5,7 @@ import AddItem from './AddItem';
 import TrackerList from './TrackerList';
 import "./Tracker.scss";
 import useProgress from 'hooks/useProgress';
+import { getTotalAmount } from "core/utils";
 
 function LinearProgressWithLabel(props) {
     return (
@@ -27,12 +28,14 @@ const Tracker = () => {
     const [totalExpense, setTotalExpense] = useState(0);
     const [expenseList, setExpenseList] = useState([]);
     const [incomeList, setIncomeList] = useState([]);
+    const totalAmount = getTotalAmount(trackerList);
 
     // get completed todos
     const todosCompleted = (trackerList && trackerList.length > 0) ? trackerList.filter((todo) => todo.completed === true) : []
 
     const progress = useProgress(todosCompleted.length, trackerList.length)
 
+    // edit item
     const addItem = (trackerData) => {
         console.log(' trackerData ', trackerData);
 
@@ -55,12 +58,14 @@ const Tracker = () => {
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
     }
 
+    // delete item
     const deleteItem = (index) => {
         trackerList.splice(index, 1);
         setTrackerList([...trackerList]);
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
     }
 
+    // todo edit item
     const editTrackerItem = (index, title) => {
         trackerList.splice(index, 1, { title: title, completed: false });
         setTrackerList([...trackerList]);
@@ -75,10 +80,6 @@ const Tracker = () => {
         setIncomeList(_incomeList)
         setExpenseList(_expenseList)
 
-        console.log(' incomeList ', incomeList);
-        console.log(' expenseList ', expenseList);
-
-        setTotalExpense(500)
 
     }, [trackerList]);
 
@@ -96,6 +97,7 @@ const Tracker = () => {
                     trackerList={trackerList}
                     todosCompleted={todosCompleted}
                     progress={progress}
+                    totalAmount={totalAmount}
                 />
 
                 <div className="row">
