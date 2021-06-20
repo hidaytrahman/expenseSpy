@@ -94,12 +94,11 @@ const AddItem = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
-      
-      {message && <div className="alert alert-danger">{message}</div>}
       <div className="row">
-     
         <div className="custom-panel col-sm-6 mb-2">
-        <div className="emoji-expresion">{(trackerType ==='income') ? <span>🤑</span> : <span>😑</span>}</div>
+          <div className="emoji-expresion">
+            {trackerType === "income" ? <span>🤑</span> : <span>😑</span>}
+          </div>
           <FormControl className="mb-2" fullWidth>
             <InputLabel htmlFor="age-native-simple">Month</InputLabel>
             <Select
@@ -196,6 +195,8 @@ const AddItem = (props) => {
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Add {trackerType}
           </Button>
+
+          {message && <div className="alert alert-danger mt-2">{message}</div>}
         </div>
 
         <div className="col-sm-6 mb-2">
@@ -215,13 +216,17 @@ const AddItem = (props) => {
 
                 <div className="row">
                   <div className="col-6">
-                    <strong>Income : </strong>{" "}
-                    <span>{totalExpense && totalExpense.income} </span>
+                    <div className="income-expense-area">
+                      <strong className="label">Income</strong>
+                      <span className="total-income-amount">{totalExpense && totalExpense.income} </span>
+                    </div>
                   </div>
 
                   <div className="col-6">
-                    <strong>Expense : </strong>{" "}
-                    <span>{totalExpense && totalExpense.expense}</span>
+                    <div className="income-expense-area">
+                      <strong className="label">Expense</strong>
+                      <span className="total-income-amount">{totalExpense && totalExpense.expense}</span>
+                    </div>
                   </div>
                 </div>
 
