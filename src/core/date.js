@@ -11,4 +11,14 @@ export const monthList = [
     "october",
     "november",
     "december"
-]
+];
+
+const d = new Date();
+
+export const currentMonth = monthList[d.getMonth()];
+
+export const getCurrentMonthName = () => {
+    const d = new Date();
+
+    return monthList[d.getMonth()];
+}

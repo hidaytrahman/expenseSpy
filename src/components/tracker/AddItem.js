@@ -17,14 +17,14 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useEffect, useRef, useState } from "react";
-import { monthList } from "../../core/date";
+import { monthList, currentMonth } from "../../core/date";
 
 const AddItem = (props) => {
   const { trackerList, progress } = props;
   const refTodo = useRef(null);
   const [totalExpense, setTotalExpense] = useState(null);
 
-  const [trackerMonth, setTrackerMonth] = useState("april");
+  const [trackerMonth, setTrackerMonth] = useState(currentMonth);
   const [trackerType, setTrackerType] = useState("income");
   const [trackerCategory, setTrackerCategory] = useState("bills");
   const [trackerTitle, setTrackerTitle] = useState("");
@@ -72,6 +72,7 @@ const AddItem = (props) => {
   ];
 
   useEffect(() => {
+
     const incomeAmountList = trackerList
       .filter((item) => item.type === "income")
       .map((item) => parseInt(item.amount));
@@ -94,7 +95,7 @@ const AddItem = (props) => {
       <div className="row">
         <div className="custom-panel col-sm-6 mb-2">
           <FormControl className="mb-2" fullWidth>
-            <InputLabel htmlFor="age-native-simple">Select Month</InputLabel>
+            <InputLabel htmlFor="age-native-simple">Month</InputLabel>
             <Select
               native
               defaultValue={trackerMonth}
