@@ -30,25 +30,33 @@ const AddItem = (props) => {
   const [trackerTitle, setTrackerTitle] = useState("");
   const [trackerAmount, setTrackerAmount] = useState(0);
   const [trackerNotes, setTrackerNotes] = useState("");
+  const [message, setMessage] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const trackerData = {
+    if (trackerAmount && trackerTitle) {
+      const trackerData = {
         trackerType,
         trackerMonth,
         trackerTitle,
         trackerAmount,
         trackerCategory,
-        trackerNotes
+        trackerNotes,
+      };
+
+      console.log(" trackerData ", trackerData);
+
+      props.addItem(trackerData);
+      
+      setTrackerTitle("");
+      refTodo.current.value= "";
+      refTodo.current.focus();
+
+      setMessage("");
+    } else {
+      setMessage("Title and Amount are required!");
     }
-
-    console.log(" trackerData ", trackerData);
-
-    props.addItem(trackerData);
-
-    refTodo.current.value = "";
-    refTodo.current.focus();
   };
 
   const categoryList = [
@@ -82,6 +90,7 @@ const AddItem = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
+      {message && <div className="alert alert-danger">{ message }</div>}
       <div className="row">
         <div className="custom-panel col-sm-6 mb-2">
           <FormControl className="mb-2" fullWidth>
