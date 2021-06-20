@@ -65,6 +65,32 @@
             flex-direction: row;
     }
 
+
+    // spinner loader //
+    .MuiLinearProgress-colorPrimary {
+        background-color: $secondary-color;
+    }
+
+    .MuiLinearProgress-barColorPrimary {
+        background-color: $primary-color;
+    }
+
+    .MuiCircularProgress-colorPrimary{
+        color: $primary-color;
+    }
+
+    .MuiLinearProgress-colorSecondary {
+        background-color: $secondary-color;
+    }
+
+    .MuiLinearProgress-barColorSecondary {
+        background-color: $secondary-color;
+    }
+
+    .MuiCircularProgress-colorSecondary {
+        color: $secondary-color;
+    }
+
     .alert {
         padding: 0.5rem 1rem;
     }

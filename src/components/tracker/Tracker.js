@@ -33,7 +33,7 @@ const Tracker = () => {
     // get completed todos
     const todosCompleted = (trackerList && trackerList.length > 0) ? trackerList.filter((todo) => todo.completed === true) : []
 
-    const progress = useProgress(todosCompleted.length, trackerList.length)
+    const progress = useProgress(totalAmount.expense, totalAmount.income);
 
     // edit item
     const addItem = (trackerData) => {
@@ -89,7 +89,7 @@ const Tracker = () => {
 
             <div className="container">
                 <div className="custom-progressbar">
-                    <LinearProgressWithLabel value={progress} color="secondary" />
+                    <LinearProgressWithLabel value={progress} color="primary" />
                 </div>
 
                 <AddItem
