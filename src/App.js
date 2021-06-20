@@ -9,7 +9,7 @@ function App() {
       <Header></Header>
       <section className="section-highlight-area">
         <div className="container">
-         <h3>Track your expenses! 💸</h3>
+         <h3>Track your expenses! 💸</h3><p>Keeping track of your expenses is an important part of managing your overall finances.</p>
         </div>
       </section>
       <Tracker></Tracker>

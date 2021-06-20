@@ -1,24 +1,16 @@
 # expenseSpy
 
-Track your expenses
+Keeping track of your expenses is an important part of managing your overall finances.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start` or `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+It's free!
 
 
 ## Features
 
-- Add/Edit/Delete Expenses
-- Add/Edit/Delete Income
+- Add Expenses
+- Add Income
+- Select specific categories
+- Track quickly by report board
 - Store in the browser
 
 
