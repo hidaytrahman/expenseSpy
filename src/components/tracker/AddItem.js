@@ -1,226 +1,250 @@
-import { Box, Button, Chip, CircularProgress, FilledInput, FormControl, FormControlLabel, FormHelperText, FormLabel, InputAdornment, InputLabel, Radio, RadioGroup, Select, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Chip,
+  CircularProgress,
+  FilledInput,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
+  InputAdornment,
+  InputLabel,
+  Radio,
+  RadioGroup,
+  Select,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
 import { monthList } from "../../core/date";
 
 const AddItem = (props) => {
-    const { trackerList, progress } = props;
-    const refTodo = useRef(null);
-    const [totalExpense, setTotalExpense] = useState(null);
+  const { trackerList, progress } = props;
+  const refTodo = useRef(null);
+  const [totalExpense, setTotalExpense] = useState(null);
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+  const [trackerMonth, setTrackerMonth] = useState("april");
+  const [trackerType, setTrackerType] = useState("income");
+  const [trackerCategory, setTrackerCategory] = useState("bills");
+  const [trackerTitle, setTrackerTitle] = useState("");
+  const [trackerAmount, setTrackerAmount] = useState(0);
+  const [trackerNotes, setTrackerNotes] = useState("");
 
-    const onSubmit = data => {
-        console.log(' data ', data);
-        props.addItem(data);
-        refTodo.current.value = "";
-        refTodo.current.focus();
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const trackerData = {
+        trackerType,
+        trackerMonth,
+        trackerTitle,
+        trackerAmount,
+        trackerCategory,
+        trackerNotes
     }
 
+    console.log(" trackerData ", trackerData);
 
-    const categoryList = [
-        "personal",
-        "entertainment",
-        "bills",
-        "utilities",
-        "EMI",
-        "salary",
-        "savings",
-        "cash",
-        "other"
-    ];
+    props.addItem(trackerData);
 
-    useEffect(() => {
-        const incomeAmountList = trackerList.filter((item) => item.type === 'income').map((item) => parseInt(item.amount));
+    refTodo.current.value = "";
+    refTodo.current.focus();
+  };
 
-        const expenseAmountList = trackerList.filter((item) => item.type === 'expense').map((item) => parseInt(item.amount));
-        
-        const totalIncome = incomeAmountList.reduce((a, b) => a + b, 0);
-        const totalExpenses = expenseAmountList.reduce((a, b) => a + b, 0);
+  const categoryList = [
+    "personal",
+    "entertainment",
+    "bills",
+    "utilities",
+    "EMI",
+    "salary",
+    "savings",
+    "cash",
+    "other",
+  ];
 
-        setTotalExpense({ income: totalIncome, expense: totalExpenses})
-        console.log(' amounts ', totalIncome);
-        console.log(' totalExpense ', totalExpense);
+  useEffect(() => {
+    const incomeAmountList = trackerList
+      .filter((item) => item.type === "income")
+      .map((item) => parseInt(item.amount));
 
+    const expenseAmountList = trackerList
+      .filter((item) => item.type === "expense")
+      .map((item) => parseInt(item.amount));
 
-    }, [trackerList])
+    const totalIncome = incomeAmountList.reduce((a, b) => a + b, 0);
+    const totalExpenses = expenseAmountList.reduce((a, b) => a + b, 0);
 
+    setTotalExpense({ income: totalIncome, expense: totalExpenses });
+    console.log(" amounts ", totalIncome);
+    console.log(" totalExpense ", totalExpense);
+  }, [trackerList]);
 
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="row">
-                <div className="custom-panel col-sm-6 mb-2">
-                    <FormControl className="mb-2" fullWidth>
-                        <InputLabel htmlFor="age-native-simple">Select Month</InputLabel>
-                        <Select
-                            native
-                            {...register("trackerMonth", {
-                                required: {
-                                    value: true,
-                                    message: "Please select type"
-                                }
-                            })}
-                        >
-                            <option aria-label="None" value="" />
-                            {
-                                monthList.map((month, index) => {
-                                    return (
-                                        <option value={month} key={index}>{month}</option>
-                                    )
-                                })
-                            }
-                        </Select>
-                    </FormControl>
+  return (
+    <form onSubmit={onSubmit}>
+      <div className="row">
+        <div className="custom-panel col-sm-6 mb-2">
+          <FormControl className="mb-2" fullWidth>
+            <InputLabel htmlFor="age-native-simple">Select Month</InputLabel>
+            <Select
+              native
+              defaultValue={trackerMonth}
+              onChange={(e) => setTrackerMonth(e.target.value)}
+            >
+              <option aria-label="None" value="" />
+              {monthList.map((month, index) => {
+                return (
+                  <option value={month} key={index}>
+                    {month}
+                  </option>
+                );
+              })}
+            </Select>
+          </FormControl>
 
-                    <FormControl component="fieldset" className="mb-2">
-                        <FormLabel component="legend">Type</FormLabel>
-                        <RadioGroup aria-label="type" name="type"
-                            defaultValue="income"
-                            {...register("trackerType", {
-                                required: {
-                                    value: true,
-                                    message: "Please select expense type"
-                                }
-                            })}
-                        > 
-                            <FormControlLabel value="income" control={<Radio />} label="Income" />
-                            <FormControlLabel value="expense" control={<Radio />} label="Expense" />
-                        </RadioGroup>
-                        <FormHelperText>{errors.trackerType?.message}</FormHelperText>
-                        
-                    </FormControl>
+          <FormControl component="fieldset" className="mb-2">
+            <FormLabel component="legend">Type</FormLabel>
+            <RadioGroup
+              aria-label="type"
+              defaultValue={trackerType}
+              onChange={(e) => {
+                setTrackerType(e.target.value);
+              }}
+            >
+              <FormControlLabel
+                value="income"
+                control={<Radio />}
+                label="Income"
+              />
+              <FormControlLabel
+                value="expense"
+                control={<Radio />}
+                label="Expense"
+              />
+            </RadioGroup>
+          </FormControl>
 
-                    <FormControl className="mb-2" fullWidth>
-                        <InputLabel htmlFor="age-native-simple">Select Category</InputLabel>
-                        <Select
-                            native
-                            defaultValue="other"
-                            {...register("trackerCategory", {
-                                required: {
-                                    value: true,
-                                    message: "Please select category"
-                                }
-                            })}
-                        >
-                            <option aria-label="None" value="" />
-                            {
-                                categoryList.map((cat, index) => {
-                                    return (
-                                        <option value={cat} key={index}>{cat}</option>
-                                    )
-                                })
-                            }
-                        </Select>
-                    </FormControl>
+          <FormControl className="mb-2" fullWidth>
+            <InputLabel htmlFor="age-native-simple">Select Category</InputLabel>
+            <Select
+              native
+              defaultValue={trackerCategory}
+              onChange={(e) => setTrackerCategory(e.target.value)}
+            >
+              <option aria-label="None" value="" />
+              {categoryList.map((cat, index) => {
+                return (
+                  <option value={cat} key={index}>
+                    {cat}
+                  </option>
+                );
+              })}
+            </Select>
+          </FormControl>
 
-                    <TextField
-                        className="mb-2"
-                        error={errors.trackerTitle?.type === 'required' || errors.trackerTitle?.type === 'maxLength'}
-                        label="Enter expense title ? 🤔"
-                        helperText={
-                            errors.trackerTitle?.type === 'required' && "Title is required 😟" ||
-                            errors.trackerTitle?.type === 'maxLength' && "You've exceeds the max limits. Should not be more then 50 letter 🙄"
-                        }
-                        variant="filled"
-                        fullWidth
-                        inputRef={refTodo}
+          <TextField
+            className="mb-2"
+            label="Enter expense title ? 🤔"
+            variant="filled"
+            fullWidth
+            inputRef={refTodo}
+            defaultValue={trackerTitle}
+            onChange={(e) => setTrackerTitle(e.target.value)}
+          />
 
-                        {...register("trackerTitle", {
-                            required: {
-                                value: true,
-                                message: "Please write what is in your mind? 🤔"
-                            }, maxLength: 50
-                        })}
-                    />
+          <FormControl fullWidth className="mb-2" variant="filled">
+            <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+            <FilledInput
+              type="number"
+              id="filled-adornment-amount"
+              defaultValue={trackerAmount}
+              onChange={(e) => setTrackerAmount(e.target.value)}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+            />
+          </FormControl>
 
-                    <FormControl fullWidth className="mb-2" variant="filled">
-                        <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-                        <FilledInput
-                            type="number"
-                            id="filled-adornment-amount"
-                            //value={values.amount}
-                            // onChange={handleChange('amount')}
-                            {...register("trackerAmount", {
-                                required: {
-                                    value: true,
-                                    message: "Please select type"
-                                }
-                            })}
-                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                        />
-                    </FormControl>
+          <TextField
+            id="filled-textarea"
+            label="Notes"
+            placeholder="Placeholder"
+            multiline
+            defaultValue={trackerNotes}
+            onChange={(e) => setTrackerNotes(e.target.value)}
+            fullWidth
+            className="mb-2"
+            variant="filled"
+          />
 
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Add
+          </Button>
+        </div>
 
-                    <TextField
-                        id="filled-textarea"
-                        label="Notes"
-                        placeholder="Placeholder"
-                        multiline
-                        defaultValue=""
-                        fullWidth
-                        className="mb-2"
-                        variant="filled"
-                        {...register("trackerNotes")}
-                    />
+        <div className="col-sm-6 mb-2">
+          {trackerList && trackerList.length > 0 && (
+            <div className="col-lg-12">
+              <section className="todo-board">
+                <h3 className="d-flex">
+                  {" "}
+                  📝 <div style={{ marginRight: "5px" }}>
+                    Tracker Board
+                  </div>{" "}
+                  <CircularProgressWithLabel
+                    color="secondary"
+                    value={progress}
+                  />
+                </h3>
 
-                    <Button type="submit" variant="contained" color="primary" fullWidth
-                    >Add</Button>
+                <div className="row">
+                  <div className="col-6">
+                    <strong>Income : </strong>{" "}
+                    <span>{totalExpense && totalExpense.income} </span>
+                  </div>
+
+                  <div className="col-6">
+                    <strong>Expense : </strong>{" "}
+                    <span>{totalExpense && totalExpense.expense}</span>
+                  </div>
                 </div>
 
-                <div className="col-sm-6 mb-2">
-                    {
-                        trackerList && trackerList.length > 0 &&
-                        <div className="col-lg-12">
-                            <section className="todo-board">
-                                <h3 className="d-flex"> 📝 <div style={{ marginRight: "5px" }}>Tracker Board</div>  <CircularProgressWithLabel color="secondary" value={progress} /></h3>
+                <hr />
 
-
-
-                                <div className="row">
-
-                                    <div className="col-6">
-                                        <strong>Income : </strong> <span >{totalExpense && totalExpense.income} </span>
-                                    </div>
-
-                                    <div className="col-6">
-                                        <strong>Expense : </strong> <span >{totalExpense && totalExpense.expense}</span>
-                                    </div>
-                                </div>
-
-                                <hr />
-
-                                <div>
-                                    <p>NO REGISTRATION REQUIRED</p>
-                                    <p>We don't store data on server. 🙂</p>
-                                </div>
-                            </section>
-                        </div>
-                    }
+                <div>
+                  <p>NO REGISTRATION REQUIRED</p>
+                  <p>We don't store data on server. 🙂</p>
                 </div>
+              </section>
             </div>
-        </form>
-    )
-}
+          )}
+        </div>
+      </div>
+    </form>
+  );
+};
 
 function CircularProgressWithLabel(props) {
-    return (
-        <Box position="relative" display="inline-flex">
-            <CircularProgress variant="determinate" {...props} />
-            <Box
-                top={0}
-                left={0}
-                bottom={0}
-                right={0}
-                position="absolute"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-            >
-                <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
-                    props.value,
-                )}%`}</Typography>
-            </Box>
-        </Box>
-    );
+  return (
+    <Box position="relative" display="inline-flex">
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        top={0}
+        left={0}
+        bottom={0}
+        right={0}
+        position="absolute"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          color="textSecondary"
+        >{`${Math.round(props.value)}%`}</Typography>
+      </Box>
+    </Box>
+  );
 }
 export default AddItem;
