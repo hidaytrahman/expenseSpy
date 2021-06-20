@@ -19,6 +19,26 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { monthList, currentMonth } from "../../core/date";
 
+const trackerCategoryList = {
+    income: [
+        "salary",
+        "freelance",
+        "gift",
+        "cashback",
+        "other"
+    ],
+    expense: [
+        "personal",
+        "entertainment",
+        "bills",
+        "utilities",
+        "EMI",
+        "savings",
+        "cash",
+        "other"
+    ]
+  }
+
 const AddItem = (props) => {
   const { trackerList, progress } = props;
   const refTodo = useRef(null);
@@ -26,7 +46,7 @@ const AddItem = (props) => {
 
   const [trackerMonth, setTrackerMonth] = useState(currentMonth);
   const [trackerType, setTrackerType] = useState("income");
-  const [trackerCategory, setTrackerCategory] = useState("bills");
+  const [trackerCategory, setTrackerCategory] = useState(trackerCategoryList[trackerType][0]);
   const [trackerTitle, setTrackerTitle] = useState("");
   const [trackerAmount, setTrackerAmount] = useState(0);
   const [trackerNotes, setTrackerNotes] = useState("");
@@ -59,17 +79,6 @@ const AddItem = (props) => {
     }
   };
 
-  const categoryList = [
-    "personal",
-    "entertainment",
-    "bills",
-    "utilities",
-    "EMI",
-    "salary",
-    "savings",
-    "cash",
-    "other",
-  ];
 
   useEffect(() => {
 
@@ -142,7 +151,9 @@ const AddItem = (props) => {
               onChange={(e) => setTrackerCategory(e.target.value)}
             >
               <option aria-label="None" value="" />
-              {categoryList.map((cat, index) => {
+              {
+            
+              trackerCategoryList[trackerType].map((cat, index) => {
                 return (
                   <option value={cat} key={index}>
                     {cat}
