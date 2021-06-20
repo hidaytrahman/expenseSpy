@@ -1,23 +1,12 @@
-import { Box } from '@material-ui/core';
+
 import { useEffect, useState } from 'react';
-import LinearProgress from '@material-ui/core/LinearProgress';
+
 import AddItem from './AddItem';
 import TrackerList from './TrackerList';
 import "./Tracker.scss";
 import useProgress from 'hooks/useProgress';
 import { getTotalAmount } from "core/utils";
-
-function LinearProgressWithLabel(props) {
-    return (
-        <Box display="flex" alignItems="center">
-            <Box width="100%" mr={1}>
-                <LinearProgress variant="determinate" {...props} />
-            </Box>
-        </Box>
-    );
-}
-
-
+import { LinearProgressWithLabel } from 'core/materialUtils';
 
 const Tracker = () => {
 
