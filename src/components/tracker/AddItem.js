@@ -20,24 +20,18 @@ import { useEffect, useRef, useState } from "react";
 import { monthList, currentMonth } from "../../core/date";
 
 const trackerCategoryList = {
-    income: [
-        "salary",
-        "freelance",
-        "gift",
-        "cashback",
-        "other"
-    ],
-    expense: [
-        "personal",
-        "entertainment",
-        "bills",
-        "utilities",
-        "EMI",
-        "savings",
-        "cash",
-        "other"
-    ]
-  }
+  income: ["salary", "freelance", "gift", "cashback", "other"],
+  expense: [
+    "personal",
+    "entertainment",
+    "bills",
+    "utilities",
+    "EMI",
+    "savings",
+    "cash",
+    "other",
+  ],
+};
 
 const AddItem = (props) => {
   const { trackerList, progress } = props;
@@ -46,7 +40,9 @@ const AddItem = (props) => {
 
   const [trackerMonth, setTrackerMonth] = useState(currentMonth);
   const [trackerType, setTrackerType] = useState("income");
-  const [trackerCategory, setTrackerCategory] = useState(trackerCategoryList[trackerType][0]);
+  const [trackerCategory, setTrackerCategory] = useState(
+    trackerCategoryList[trackerType][0]
+  );
   const [trackerTitle, setTrackerTitle] = useState("");
   const [trackerAmount, setTrackerAmount] = useState(0);
   const [trackerNotes, setTrackerNotes] = useState("");
@@ -68,9 +64,9 @@ const AddItem = (props) => {
       console.log(" trackerData ", trackerData);
 
       props.addItem(trackerData);
-      
+
       setTrackerTitle("");
-      refTodo.current.value= "";
+      refTodo.current.value = "";
       refTodo.current.focus();
 
       setMessage("");
@@ -79,9 +75,7 @@ const AddItem = (props) => {
     }
   };
 
-
   useEffect(() => {
-
     const incomeAmountList = trackerList
       .filter((item) => item.type === "income")
       .map((item) => parseInt(item.amount));
@@ -100,9 +94,12 @@ const AddItem = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
-      {message && <div className="alert alert-danger">{ message }</div>}
+      
+      {message && <div className="alert alert-danger">{message}</div>}
       <div className="row">
+     
         <div className="custom-panel col-sm-6 mb-2">
+        <div className="emoji-expresion">{(trackerType ==='income') ? <span>🤑</span> : <span>😑</span>}</div>
           <FormControl className="mb-2" fullWidth>
             <InputLabel htmlFor="age-native-simple">Month</InputLabel>
             <Select
@@ -151,9 +148,7 @@ const AddItem = (props) => {
               onChange={(e) => setTrackerCategory(e.target.value)}
             >
               <option aria-label="None" value="" />
-              {
-            
-              trackerCategoryList[trackerType].map((cat, index) => {
+              {trackerCategoryList[trackerType].map((cat, index) => {
                 return (
                   <option value={cat} key={index}>
                     {cat}
@@ -165,7 +160,7 @@ const AddItem = (props) => {
 
           <TextField
             className="mb-2"
-            label="Enter expense title ? 🤔"
+            label={`Enter ${trackerType} title ?`}
             variant="filled"
             fullWidth
             inputRef={refTodo}
@@ -199,7 +194,7 @@ const AddItem = (props) => {
           />
 
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Add
+            Add {trackerType}
           </Button>
         </div>
 

@@ -11,7 +11,7 @@ const TrackerList = (props) => {
           trackerList &&
           trackerList.map((expense, index) => {
             return (
-              <Card className={(expense.type === 'income') ? "income-list-item": "expense-list-item"}>
+              <Card key={index} className={(expense.type === 'income') ? "income-list-item": "expense-list-item"}>
                 <CardContent>
                   <div className="list-header row">
                     <div className="col-sm-4 amount">

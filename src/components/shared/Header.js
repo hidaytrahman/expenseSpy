@@ -33,12 +33,14 @@ const Header = () => {
         <header className="main-header">
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-10">
+                    <div className="col-sm-9">
                         <h1>💰 Expense Spy 🕵️  </h1>
                        
                     </div>
-                    <div className="col-sm-2 d-none">
-                        <FormGroup className="d-flex align-items-end">
+                    <div className="col-sm-3 d-flex align-items-end justify-content-end ">
+
+                        <p>Also Try <a href="https://hidaytrahman.github.io/penless-todo/">Penless todo</a>!</p>
+                        <FormGroup className="d-flex  align-items-end d-none">
                             <FormControlLabel
                                 control={<Switch checked={darkMode}
                                     onChange={toggleChecked}

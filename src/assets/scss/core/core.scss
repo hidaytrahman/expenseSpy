@@ -1,6 +1,18 @@
 .custom-panel {
     background: $white-color;
     padding: 1rem;
+    position: relative;
+
+    .emoji-expresion {
+        font-size: 4rem;
+        position: absolute;
+        top: -2rem;
+        left: 39%;
+        background: white;
+        padding: 0 1rem;
+        border-radius: 20px;
+        border-top: 1px solid #dfdfdf;
+    }
 }
 
 .section-highlight-area {
