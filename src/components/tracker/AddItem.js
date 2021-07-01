@@ -61,7 +61,7 @@ const AddItem = (props) => {
   return (
     <form onSubmit={onSubmit}>
       <div className="row">
-        <div className="custom-panel col-sm-6 mb-2">
+        <div className={`custom-panel  mb-2 ${(trackerList && trackerList.length === 0) ? 'col-sm-12' : 'col-sm-6'}`}>
           <div className="emoji-expresion">
             {trackerType === "income" ? <span>🤑</span> : <span>😑</span>}
           </div>

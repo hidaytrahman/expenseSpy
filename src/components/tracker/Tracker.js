@@ -7,6 +7,7 @@ import "./Tracker.scss";
 import useProgress from 'hooks/useProgress';
 import { getTotalAmount } from "core/utils";
 import { LinearProgressWithLabel } from 'core/materialUtils';
+import { Button } from '@material-ui/core';
 
 const Tracker = () => {
 
@@ -17,6 +18,7 @@ const Tracker = () => {
     const [totalExpense, setTotalExpense] = useState(0);
     const [expenseList, setExpenseList] = useState([]);
     const [incomeList, setIncomeList] = useState([]);
+    const [showList, setShowList] = useState(false);
     const totalAmount = getTotalAmount(trackerList);
 
     // get completed todos
@@ -77,25 +79,45 @@ const Tracker = () => {
 
     return (
         <section className="tracker-wrapper">
+            <div className="container">
+
+                <div className="row d-flex justify-content-end mb-2">
+
+                    <div className="col-sm-4 d-flex justify-content-end">
+                        <Button type="submit" variant="contained" color="primary" onClick={() => {
+                            (showList) ? setShowList(false) : setShowList(true)
+
+                        }}>
+                            {(showList) ? 'Add New' : 'Show List'}
+                        </Button>
+                    </div>
+
+                </div>
+
+            </div>
 
             <div className="container">
                 <div className="custom-progressbar">
                     <LinearProgressWithLabel value={progress} color="primary" />
                 </div>
 
-                <AddItem
-                    addItem={addItem}
-                    trackerList={trackerList}
-                    todosCompleted={todosCompleted}
-                    progress={progress}
-                    totalAmount={totalAmount}
-                />
+                {
+                    !showList && <AddItem
+                        addItem={addItem}
+                        trackerList={trackerList}
+                        todosCompleted={todosCompleted}
+                        progress={progress}
+                        totalAmount={totalAmount}
+                    />
+                }
+
 
                 <div className="row">
                     <div className="col-lg-8">
 
                         {
                             trackerList && trackerList.length > 0 ?
+                                showList &&
                                 <TrackerList
                                     trackerList={trackerList}
                                     deleteItem={deleteItem}
