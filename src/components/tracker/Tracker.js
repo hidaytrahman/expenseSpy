@@ -69,6 +69,8 @@ const Tracker = () => {
         setIncomeList(_incomeList)
         setExpenseList(_expenseList)
 
+        localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
+
 
     }, [trackerList]);
 
