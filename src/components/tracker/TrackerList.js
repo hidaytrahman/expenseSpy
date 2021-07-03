@@ -7,7 +7,7 @@ const TrackerList = () => {
   const { expenseStore } = useStores(); 
 
   return (
-    <div className="list-main-wrapper mt-4 mb-4">
+    <div className="list-main-wrapper mb-4">
       <h2>Expense List</h2>
       <List className="list-wrapper">
         {

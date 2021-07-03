@@ -1,0 +1,22 @@
+.add-item-wrapper {
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    right: 0;
+    bottom: 0;
+    z-index: -99;
+    transition: 0.5s all ease;
+
+    &.displaying {
+        background: #000000ad;
+        left: 0;
+        z-index: 999;
+    }
+
+    .form-container {
+        position: absolute;
+        top: 22vh;
+        left: 9vw;
+    }
+
+}

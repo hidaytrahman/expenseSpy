@@ -10,13 +10,14 @@ import "./Tracker.scss";
 import useProgress from 'hooks/useProgress';
 import { getTotalAmount } from "core/utils";
 import { useStores } from 'store';
+import Board from './Board';
 
 
 
 const Tracker = () => {
     const { expenseStore } = useStores();
-    
-    const [showList, setShowList] = useState(false);
+
+    const [showList, setShowList] = useState(true);
     const totalAmount = getTotalAmount(expenseStore.expenses);
 
     const progress = useProgress(totalAmount.expense, totalAmount.income);
@@ -45,7 +46,9 @@ const Tracker = () => {
                 </div>
 
                 {
-                    !showList && <AddItem
+                    <AddItem
+                        showList={showList}
+                        setShowList={setShowList}
                         progress={progress}
                         totalAmount={totalAmount}
                     />
@@ -53,7 +56,7 @@ const Tracker = () => {
 
 
                 <div className="row">
-                    <div className="col-lg-8">
+                    <div className="col-sm-8">
 
                         {
                             expenseStore.expenses && expenseStore.expenses.length > 0 ?
@@ -63,6 +66,10 @@ const Tracker = () => {
                                 : <div className="alert alert-info">What are you thinking, Add your first expense? 😉</div>
                         }
 
+                    </div>
+
+                    <div className="col-sm-4">
+                        <Board totalAmount={totalAmount} progress={progress} />
                     </div>
                 </div>
 
