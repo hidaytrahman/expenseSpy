@@ -16,8 +16,11 @@ import { useRef, useState } from "react";
 import { monthList, currentMonth } from "../../core/date";
 import { trackerCategoryList } from "core/constant";
 import { CircularProgressWithLabel } from "core/materialUtils";
+import { useStores } from "store";
 
 const AddItem = (props) => {
+  const { expenseStore } = useStores(); 
+
   const { trackerList, progress, totalAmount } = props;
   const refTodo = useRef(null);
 
@@ -46,7 +49,9 @@ const AddItem = (props) => {
 
       console.log(" trackerData ", trackerData);
 
-      props.addItem(trackerData);
+      //props.addItem(trackerData);
+
+      expenseStore.addExpense(trackerData);
 
       setTrackerTitle("");
       refTodo.current.value = "";

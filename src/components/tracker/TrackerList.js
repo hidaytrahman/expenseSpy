@@ -1,7 +1,11 @@
 import { Card, CardContent, Chip,  IconButton, List } from "@material-ui/core";
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
+import { observer } from "mobx-react-lite";
+import { useStores } from "store";
+
 const TrackerList = (props) => {
   const { trackerList, deleteItem } = props;
+  const { expenseStore } = useStores(); 
 
   return (
     <div className="list-main-wrapper mt-4 mb-4">
@@ -28,7 +32,7 @@ const TrackerList = (props) => {
                           <RemoveRedEyeRounded />
                         </IconButton> */}
                         <IconButton
-                          onClick={() => deleteItem(index)}>
+                          onClick={() => expenseStore.deleteExpense(index)}>
                           <DeleteSharpIcon />
                         </IconButton>
                       </div>
@@ -58,4 +62,4 @@ const TrackerList = (props) => {
   )
 }
 
-export default TrackerList;
+export default observer(TrackerList);

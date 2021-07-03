@@ -8,9 +8,12 @@ import useProgress from 'hooks/useProgress';
 import { getTotalAmount } from "core/utils";
 import { LinearProgressWithLabel } from 'core/materialUtils';
 import { Button } from '@material-ui/core';
+import { useStores } from 'store';
+import { observer } from 'mobx-react-lite';
+
 
 const Tracker = () => {
-
+    const { expenseStore } = useStores(); 
     // get data from browser if already exists and set to initial state
     const trackerListOnStorage = localStorage.getItem("expenseTracker") ? JSON.parse(localStorage.getItem("expenseTracker")) : [];
 
@@ -44,6 +47,8 @@ const Tracker = () => {
             created: new Date()
         }
 
+        expenseStore.addExpense(dataset);
+
         console.log(' dataset ', dataset);
         setTrackerList([...trackerList, dataset]);
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
@@ -71,6 +76,9 @@ const Tracker = () => {
         setIncomeList(_incomeList)
         setExpenseList(_expenseList)
 
+
+        console.log(' expenseStore ', expenseStore)
+
         localStorage.setItem("expenseTracker", JSON.stringify(trackerList))
 
 
@@ -80,7 +88,6 @@ const Tracker = () => {
     return (
         <section className="tracker-wrapper">
             <div className="container">
-
                 <div className="row d-flex justify-content-end mb-2">
 
                     <div className="col-sm-4 d-flex justify-content-end">
@@ -119,7 +126,7 @@ const Tracker = () => {
                             trackerList && trackerList.length > 0 ?
                                 showList &&
                                 <TrackerList
-                                    trackerList={trackerList}
+                                    trackerList={expenseStore.expenses}
                                     deleteItem={deleteItem}
                                     editTrackerItem={editTrackerItem}
                                 />
@@ -136,4 +143,4 @@ const Tracker = () => {
     )
 }
 
-export default Tracker;
+export default observer(Tracker);
