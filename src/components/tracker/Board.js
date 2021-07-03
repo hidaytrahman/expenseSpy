@@ -18,7 +18,7 @@ const Board = ({progress, totalAmount}) => {
                         </h3>
 
                         <div className="row">
-                            <div className="col-6">
+                            <div className="col-lg-6">
                                 <div className="income-expense-area">
                                     <strong className="label">Income</strong>
                                     <span className="total-income-amount">
@@ -27,7 +27,7 @@ const Board = ({progress, totalAmount}) => {
                                 </div>
                             </div>
 
-                            <div className="col-6">
+                            <div className="col-lg-6">
                                 <div className="income-expense-area">
                                     <strong className="label">Expense</strong>
                                     <span className="total-income-amount">
