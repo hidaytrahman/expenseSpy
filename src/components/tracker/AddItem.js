@@ -17,11 +17,13 @@ import { monthList, currentMonth } from "../../core/date";
 import { trackerCategoryList } from "core/constant";
 import { CircularProgressWithLabel } from "core/materialUtils";
 import { useStores } from "store";
+import { observer } from "mobx-react-lite";
+
 
 const AddItem = (props) => {
   const { expenseStore } = useStores(); 
 
-  const { trackerList, progress, totalAmount } = props;
+  const { progress, totalAmount } = props;
   const refTodo = useRef(null);
 
   const [trackerMonth, setTrackerMonth] = useState(currentMonth);
@@ -49,8 +51,6 @@ const AddItem = (props) => {
 
       console.log(" trackerData ", trackerData);
 
-      //props.addItem(trackerData);
-
       expenseStore.addExpense(trackerData);
 
       setTrackerTitle("");
@@ -66,7 +66,7 @@ const AddItem = (props) => {
   return (
     <form onSubmit={onSubmit}>
       <div className="row">
-        <div className={`custom-panel  mb-2 ${(trackerList && trackerList.length === 0) ? 'col-sm-12' : 'col-sm-6'}`}>
+        <div className={`custom-panel  mb-2 ${(expenseStore.expenses && expenseStore.expenses.length === 0) ? 'col-sm-12' : 'col-sm-6'}`}>
           <div className="emoji-expresion">
             {trackerType === "income" ? <span>🤑</span> : <span>😑</span>}
           </div>
@@ -171,7 +171,7 @@ const AddItem = (props) => {
         </div>
 
         <div className="col-sm-6 mb-2">
-          {trackerList && trackerList.length > 0 && (
+          {expenseStore.expenses && expenseStore.expenses.length > 0 && (
             <div className="col-lg-12">
               <section className="todo-board">
                 <h3 className="d-flex">
@@ -219,4 +219,4 @@ const AddItem = (props) => {
 };
 
 
-export default AddItem;
+export default observer(AddItem);

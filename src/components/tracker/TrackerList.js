@@ -3,8 +3,7 @@ import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import { observer } from "mobx-react-lite";
 import { useStores } from "store";
 
-const TrackerList = (props) => {
-  const { trackerList, deleteItem } = props;
+const TrackerList = () => {
   const { expenseStore } = useStores(); 
 
   return (
@@ -12,8 +11,8 @@ const TrackerList = (props) => {
       <h2>Expense List</h2>
       <List className="list-wrapper">
         {
-          trackerList &&
-          trackerList.map((expense, index) => {
+          expenseStore.expenses &&
+          expenseStore.expenses.map((expense, index) => {
             return (
               <Card key={index} className={(expense.type === 'income') ? "income-list-item": "expense-list-item"}>
                 <CardContent>
