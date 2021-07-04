@@ -1,17 +1,18 @@
-.todo-wrapper {
-  min-height: 77vh;
-}
-
-.todo-board {
+.board {
   background-color: #fafafa;
   padding: 1rem;
 
   .income-expense-area {
     font-size: 2rem;
-    background: #f6f6f6;
+    background: #f7eced;
     padding: 1rem;
     position: relative;
     border-radius: 8px;
+    margin: 0.5rem;
+
+    &.income {
+      background: #e5f3ed;
+    }
 
     strong {
       font-size: 1rem;

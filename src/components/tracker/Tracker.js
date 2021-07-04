@@ -18,6 +18,7 @@ const Tracker = () => {
     const { expenseStore } = useStores();
 
     const [showList, setShowList] = useState(true);
+    const [expandList, setExpandList] = useState(false);
     const totalAmount = getTotalAmount(expenseStore.expenses);
 
     const progress = useProgress(totalAmount.expense, totalAmount.income);
@@ -56,21 +57,23 @@ const Tracker = () => {
 
 
                 <div className="row">
-                    <div className="col-sm-8">
+                    <div className={`col-lg-6`}>
+                        <Board totalAmount={totalAmount} progress={progress} />
+                    </div>
+
+                    <div className={` mt-sm-2 ${expandList ? 'col-lg-12' : 'col-lg-6'}`}>
 
                         {
                             expenseStore.expenses && expenseStore.expenses.length > 0 ?
                                 showList &&
-                                <TrackerList />
+                                <TrackerList expandList={expandList} setExpandList={setExpandList}/>
 
                                 : <div className="alert alert-info">What are you thinking, Add your first expense? 😉</div>
                         }
 
                     </div>
 
-                    <div className="col-sm-4">
-                        <Board totalAmount={totalAmount} progress={progress} />
-                    </div>
+
                 </div>
 
             </div>

@@ -7,7 +7,7 @@ const Board = ({progress, totalAmount}) => {
         <div className="mb-2">
             {expenseStore.expenses && expenseStore.expenses.length > 0 && (
                 <div className="col-lg-12">
-                    <section className="todo-board">
+                    <section className="board">
                         <h3 className="d-flex">
                             {" "}
                             <div style={{ marginRight: "5px" }}>Tracker Board</div>{" "}
@@ -19,7 +19,7 @@ const Board = ({progress, totalAmount}) => {
 
                         <div className="row">
                             <div className="col-lg-6">
-                                <div className="income-expense-area">
+                                <div className="income-expense-area income">
                                     <strong className="label">Income</strong>
                                     <span className="total-income-amount">
                                         {totalAmount && totalAmount.income}{" "}
@@ -37,12 +37,10 @@ const Board = ({progress, totalAmount}) => {
                             </div>
                         </div>
 
-                        <hr />
-
-                        <div className="app-meta-info">
+                        {/* <div className="app-meta-info">
                             <p>NO REGISTRATION REQUIRED</p>
                             <p>We don't store data on server. 🙂</p>
-                        </div>
+                        </div> */}
                     </section>
                 </div>
             )}

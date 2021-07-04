@@ -2,13 +2,19 @@ import { Card, CardContent, Chip,  IconButton, List } from "@material-ui/core";
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import { observer } from "mobx-react-lite";
 import { useStores } from "store";
+import AspectRatioIcon from '@material-ui/icons/AspectRatio';
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
-const TrackerList = () => {
+const TrackerList = ({ setExpandList, expandList }) => {
   const { expenseStore } = useStores(); 
 
   return (
     <div className="list-main-wrapper mb-4">
-      <h2>Expense List</h2>
+      <div className="controls-container">
+        <h2>Expense List</h2>
+        <IconButton onClick={() => setExpandList(!expandList)}> {(expandList) ? <FullscreenExitIcon /> : <AspectRatioIcon />}</IconButton>
+      </div>
+      
       <List className="list-wrapper">
         {
           expenseStore.expenses &&
