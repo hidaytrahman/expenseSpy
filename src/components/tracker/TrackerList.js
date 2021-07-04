@@ -1,26 +1,65 @@
-import { Card, CardContent, Chip,  IconButton, List } from "@material-ui/core";
+import { Card, CardContent, Chip, IconButton, List } from "@material-ui/core";
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import { observer } from "mobx-react-lite";
 import { useStores } from "store";
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
+import { Button } from '@material-ui/core';
+import { useEffect, useState } from "react";
 
 const TrackerList = ({ setExpandList, expandList }) => {
-  const { expenseStore } = useStores(); 
+  const { expenseStore } = useStores();
+
+  const [expList, setExpList] = useState(expenseStore.expenses);
+
+  const [sortBy, setSortBy] = useState('all');
+
+  // useEffect(() => {
+  //   if (sortBy === 'income') {
+  //     setExpList(expenseStore.getIncomeList());
+  //   } else if (sortBy === 'expense') {
+  //     setExpList(expenseStore.getExpenseList());
+  //   } else {
+  //     setExpList(expenseStore.expenses);
+  //   }
+  // }, [sortBy, expenseStore])
 
   return (
     <div className="list-main-wrapper mb-4">
       <div className="controls-container">
-        <h2>Expense List</h2>
-        <IconButton onClick={() => setExpandList(!expandList)}> {(expandList) ? <FullscreenExitIcon /> : <AspectRatioIcon />}</IconButton>
+        <h2>Expense List <small>({expenseStore.expenses.length})</small></h2>
+        <div className="contols">
+          {/* <Button type="submit" className="m-2" variant="contained" color="secondary"
+            onClick={() => {
+              setSortBy('all')
+            }}>
+            All
+          </Button>
+
+          <Button type="submit" className="m-2" variant="contained" color="secondary"
+            onClick={() => {
+              setSortBy('income')
+            }}>
+            Incomes
+          </Button>
+
+          <Button type="submit" className="m-2" variant="contained" color="secondary"
+            onClick={() => {
+              setSortBy('expense')
+            }}>
+            Expenses
+          </Button> */}
+          <IconButton className="d-none d-lg-block" onClick={() => setExpandList(!expandList)}> {(expandList) ? <FullscreenExitIcon /> : <AspectRatioIcon />}</IconButton>
+        </div>
+
       </div>
-      
+
       <List className="list-wrapper">
         {
-          expenseStore.expenses &&
-          expenseStore.expenses.map((expense, index) => {
+          expList &&
+          expList.map((expense, index) => {
             return (
-              <Card key={index} className={(expense.type === 'income') ? "income-list-item": "expense-list-item"}>
+              <Card key={index} className={(expense.type === 'income') ? "income-list-item" : "expense-list-item"}>
                 <CardContent>
                   <div className="list-header row">
                     <div className="col-sm-4 amount">
@@ -56,7 +95,6 @@ const TrackerList = ({ setExpandList, expandList }) => {
 
 
               </Card>
-
             )
           })
         }

@@ -99,4 +99,12 @@
         color: $primary-color;
         text-decoration: none;
     }
+
+    .MuiButton-containedSecondary {
+        background-color: $secondary-color;
+
+        &:hover {
+            background-color: darken($secondary-color, 20);
+        }
+    }
 }

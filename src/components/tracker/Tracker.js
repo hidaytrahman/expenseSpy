@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { LinearProgressWithLabel } from 'core/materialUtils';
@@ -11,7 +10,6 @@ import useProgress from 'hooks/useProgress';
 import { getTotalAmount } from "core/utils";
 import { useStores } from 'store';
 import Board from './Board';
-
 
 
 const Tracker = () => {
