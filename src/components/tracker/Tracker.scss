@@ -70,4 +70,13 @@
     .list-header .amount {
         font-size: 1.3rem;
     }
+
+    .tracker-add-and-list-wrapper {
+        display: flex;
+        flex-flow: row-reverse;
+
+        @media screen and (max-width: 991px){
+            flex-direction: column;
+        }
+    }
 }

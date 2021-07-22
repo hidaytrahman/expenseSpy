@@ -24,9 +24,9 @@ const Tracker = () => {
     return (
         <section className="tracker-wrapper">
             <div className="container">
-                <div className="row d-flex justify-content-end mb-2">
+                <div className="row d-flex justify-content-start mb-2">
 
-                    <div className="col-sm-4 d-flex justify-content-end">
+                    <div className="col-sm-12 d-flex justify-content-start">
                         <Button type="submit" variant="contained" color="primary" onClick={() => {
                             (showList) ? setShowList(false) : setShowList(true)
 
@@ -54,7 +54,7 @@ const Tracker = () => {
                 }
 
 
-                <div className="row">
+                <div className="row tracker-add-and-list-wrapper">
                     <div className={`col-lg-6`}>
                         <Board totalAmount={totalAmount} progress={progress} />
                     </div>

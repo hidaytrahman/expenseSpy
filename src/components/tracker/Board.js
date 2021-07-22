@@ -22,7 +22,7 @@ const Board = ({progress, totalAmount}) => {
                                 <div className="income-expense-area income">
                                     <strong className="label">Income</strong>
                                     <span className="total-income-amount">
-                                        {totalAmount && totalAmount.income}{" "}
+                                    ₹ {totalAmount && totalAmount.income}{" "}
                                     </span>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@ const Board = ({progress, totalAmount}) => {
                                 <div className="income-expense-area">
                                     <strong className="label">Expense</strong>
                                     <span className="total-income-amount">
-                                        {totalAmount && totalAmount.expense}
+                                    ₹  {totalAmount && totalAmount.expense}
                                     </span>
                                 </div>
                             </div>
