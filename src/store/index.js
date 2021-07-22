@@ -1,9 +1,7 @@
 import { createContext, useContext } from "react";
 import expenseStore from "./expenseStore";
 
-
 class RootStore {
-
     constructor() {
         this.expenseStore = new expenseStore(this);
     }
