@@ -16,7 +16,7 @@ class expenseStore {
             type: trackerData.trackerType, //"expense",
             date: {
                 month: trackerData.trackerMonth,
-                day: new Date().getUTCDay(),
+                day: new Date().getUTCDate(),
                 year: new Date().getFullYear()
             },
             title: trackerData.trackerTitle,
@@ -33,14 +33,13 @@ class expenseStore {
 
 
     // UPDATE //
-    // Todo
     updateExpense(index, newData) {
 
         const dataset = {
             type: newData.trackerType, //"expense",
             date: {
                 month: newData.trackerMonth,
-                day: new Date().getUTCDay(),
+                day: new Date().getUTCDate(),
                 year: new Date().getFullYear()
             },
             title: newData.trackerTitle,
@@ -65,7 +64,7 @@ class expenseStore {
     }
 
 
-    // GET Utils //
+    // GETTER Utils //
     getIncomeList(){
         return  this.expenses.filter((item) => item.type === 'income');
     }

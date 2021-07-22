@@ -87,7 +87,7 @@ const TrackerList = ({ setExpandList, expandList }) => {
 
                   <div className="more-info-wrapper">
                     <h6>{expense.info}</h6>
-                    <p><small>{expense.date.day} | {expense.date.month} | {expense.date.year}</small></p>
+                    <p className="capitalize"><small>{expense.date.day} | {expense.date.month} | {expense.date.year}</small></p>
                   </div>
 
                 </CardContent>
