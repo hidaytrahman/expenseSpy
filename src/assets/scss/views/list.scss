@@ -7,6 +7,14 @@
         border-radius: 7px 7px 0 0;
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+        position: relative;
+        
+        .control-expend-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
 
         h2 {
             font-size: 1.6rem;

@@ -10,8 +10,6 @@ import { useState } from "react";
 const TrackerList = ({ setExpandList, expandList }) => {
   const { expenseStore } = useStores();
 
-  //const [expList, setExpList] = useState(expenseStore.expenses);
-
   const [sortBy, setSortBy] = useState('');
 
   return (
@@ -19,33 +17,39 @@ const TrackerList = ({ setExpandList, expandList }) => {
       <div className="controls-container">
         <h2>Expense List <small>({expenseStore.expenses.length})</small></h2>
         <div className="controls">
-          <div>
+          <div className="list-control">
             <Button type="submit" className="m-2" variant="contained" color="secondary"
               onClick={() => {
-                setSortBy('')
+                setSortBy('');
               }}>
               All
             </Button>
 
-            <Button type="submit" className="m-2" variant="contained" color="secondary"
-              onClick={() => {
-                setSortBy('income')
-              }}>
-              Incomes
-            </Button>
+            {
+              expenseStore.getIncomeList().length > 0 &&
+              <Button type="submit" className="m-2" variant="contained" color="secondary"
+                onClick={() => {
+                  setSortBy('income');
+                }}>
+                Incomes
+              </Button>
+            }
 
-            <Button type="submit" className="m-2" variant="contained" color="secondary"
-              onClick={() => {
-                setSortBy('expense')
-              }}>
-              Expenses
-            </Button>
+
+            {
+              expenseStore.getExpenseList().length > 0 &&
+              <Button type="submit" className="m-2" variant="contained" color="secondary"
+                onClick={() => {
+                  setSortBy('expense');
+                }}>
+                Expenses
+              </Button>
+            }
+
           </div>
-
-
         </div>
 
-        <IconButton className="d-none d-lg-block" onClick={() => setExpandList(!expandList)}> {(expandList) ? <FullscreenExitIcon /> : <AspectRatioIcon />}</IconButton>
+        <IconButton className="d-none control-expend-btn d-lg-block" onClick={() => setExpandList(!expandList)}> {(expandList) ? <FullscreenExitIcon /> : <AspectRatioIcon />}</IconButton>
 
       </div>
 
