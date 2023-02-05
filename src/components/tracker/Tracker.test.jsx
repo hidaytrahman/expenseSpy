@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Tracker from "./Tracker";
 
 describe("Expernse Tracker", () => {
@@ -15,6 +16,20 @@ describe("Expernse Tracker", () => {
   });
 
   test("changes text as `Show List` on click of 'Add New' button", async () => {
+    userEvent.setup();
     render(<Tracker />);
+    const addNewBtn = screen.getByRole("button", { name: "Add New" });
+    await userEvent.click(addNewBtn);
+    expect(
+      screen.getByRole("button", { name: "Show List" })
+    ).toBeInTheDocument();
+  });
+
+  test("renders add income/expense modal after click", async () => {
+    userEvent.setup();
+    render(<Tracker />);
+    const addNewBtn = screen.getByRole("button", { name: "Add New" });
+    await userEvent.click(addNewBtn);
+    expect(screen.getByTestId("trackerAddItem")).toBeInTheDocument();
   });
 });

@@ -62,7 +62,10 @@ const AddItem = ({ showList, setShowList }) => {
   };
 
   return (
-    <section className={`add-item-wrapper ${showList ? "" : "displaying"}`}>
+    <section
+      className={`add-item-wrapper ${showList ? "" : "displaying"}`}
+      data-testid="trackerAddItem"
+    >
       <form onSubmit={onSubmit}>
         <div className="row form-container">
           <div className="custom-panel col-sm-6 mb-2">
