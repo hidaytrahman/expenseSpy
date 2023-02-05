@@ -12,17 +12,15 @@ import {
   TextField,
 } from "@material-ui/core";
 
-import CancelIcon from '@material-ui/icons/Cancel';
+import CancelIcon from "@material-ui/icons/Cancel";
 
 import { useRef, useState } from "react";
-import { monthList, currentMonth } from "../../core/date";
+import { monthList, currentMonth } from "../../../core/date";
 import { trackerCategoryList } from "core/constant";
-import { CircularProgressWithLabel } from "core/materialUtils";
 import { useStores } from "store";
 import { observer } from "mobx-react-lite";
 
-
-const AddItem = ({showList, setShowList}) => {
+const AddItem = ({ showList, setShowList }) => {
   const { expenseStore } = useStores();
   const refTodo = useRef(null);
 
@@ -67,9 +65,13 @@ const AddItem = ({showList, setShowList}) => {
     <section className={`add-item-wrapper ${showList ? "" : "displaying"}`}>
       <form onSubmit={onSubmit}>
         <div className="row form-container">
-          
           <div className="custom-panel col-sm-6 mb-2">
-          <div className="btn btn-close-popup" onClick={() => setShowList(true)}><CancelIcon /></div>
+            <div
+              className="btn btn-close-popup"
+              onClick={() => setShowList(true)}
+            >
+              <CancelIcon />
+            </div>
             <div className="emoji-expresion">
               {trackerType === "income" ? <span>🤑</span> : <span>😑</span>}
             </div>
@@ -114,7 +116,9 @@ const AddItem = ({showList, setShowList}) => {
             </FormControl>
 
             <FormControl className="mb-2" fullWidth>
-              <InputLabel htmlFor="age-native-simple">Select Category</InputLabel>
+              <InputLabel htmlFor="age-native-simple">
+                Select Category
+              </InputLabel>
               <Select
                 native
                 defaultValue={trackerCategory}
@@ -170,15 +174,14 @@ const AddItem = ({showList, setShowList}) => {
               Add {trackerType}
             </Button>
 
-            {message && <div className="alert alert-danger mt-2">{message}</div>}
+            {message && (
+              <div className="alert alert-danger mt-2">{message}</div>
+            )}
           </div>
-
         </div>
       </form>
     </section>
-
   );
 };
-
 
 export default observer(AddItem);
