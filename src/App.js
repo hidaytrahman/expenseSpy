@@ -1,7 +1,7 @@
-import Footer from 'components/shared/Footer';
-import Header from 'components/shared/Header';
-import Tracker from 'components/tracker/Tracker';
-import './App.scss';
+import Footer from "components/shared/footer/Footer";
+import Header from "components/shared/header/Header";
+import Tracker from "components/tracker/Tracker";
+import "./App.scss";
 
 function App() {
   return (
@@ -9,12 +9,15 @@ function App() {
       <Header></Header>
       <section className="section-highlight-area">
         <div className="container">
-         <h3>Track your expenses! 💸</h3><p>Keeping track of your expenses is an important part of managing your overall finances.</p>
+          <h3>Track your expenses! 💸</h3>
+          <p>
+            Keeping track of your expenses is an important part of managing your
+            overall finances.
+          </p>
         </div>
       </section>
-      <Tracker></Tracker>
-
-      <Footer></Footer>
+      <Tracker />
+      <Footer />
     </div>
   );
 }
