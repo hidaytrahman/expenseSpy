@@ -33,7 +33,7 @@ const Header = () => {
 					<div className='col-sm-3 d-flex align-items-end justify-content-end '>
 						<p>
 							<span>Also Try</span>{' '}
-							<a href='https://hidaytrahman.github.io/penless-todo/'>Penless Todo App</a>!
+							<a href='https://hidaytrahman.github.io/penless-todo/'> Penless Todo App</a>!
 						</p>
 						<FormGroup className='d-flex  align-items-end d-none'>
 							<FormControlLabel
